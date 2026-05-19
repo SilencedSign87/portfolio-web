@@ -32,15 +32,15 @@
         "semana-7": Semana7,
     };
 
-    let currentIndex = $derived(semanaSlugs.indexOf(slug));
-    let prevSlug = $derived(currentIndex > 0 ? semanaSlugs[currentIndex - 1] : null);
-    let nextSlug = $derived(currentIndex < semanaSlugs.length - 1 ? semanaSlugs[currentIndex + 1] : null);
-
     let isDetail = $derived(router.location !== "/cuadernos");
     let slug = $derived(
         isDetail ? router.location.replace("/cuadernos/", "") : "",
     );
     let Component = $derived(isDetail ? components[slug] : null);
+
+    let currentIndex = $derived(semanaSlugs.indexOf(slug));
+    let prevSlug = $derived(currentIndex > 0 ? semanaSlugs[currentIndex - 1] : null);
+    let nextSlug = $derived(currentIndex < semanaSlugs.length - 1 ? semanaSlugs[currentIndex + 1] : null);
 
     let isStuck = $state(false);
     let sentinel = $state<HTMLDivElement | null>(null);
@@ -110,7 +110,7 @@
 
 {#if isDetail}
     {#if Component}
-        <svelte:component this={Component} />
+        <Component />
     {:else}
         <p class="text-red-500">Cuaderno "{slug}" no encontrado</p>
     {/if}

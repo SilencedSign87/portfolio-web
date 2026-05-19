@@ -3,6 +3,7 @@
     import ArticleSectionTitle from "@components/article/ArticleSectionTitle.svelte";
     import Paragraph from "@components/article/Paragraph.svelte";
     import Paper from "@components/article/Paper.svelte";
+    import PostIt from "@components/PostIt.svelte";
     import blur1dark from "@assets/blur1dark.jpg";
     import blur1light from "@assets/blur1light.png";
     import ThemeImage from "@components/ThemeImage.svelte";
@@ -72,6 +73,13 @@
             pueden presentar apariencias similares si no se personalizan
             adecuadamente.
         </Paragraph>
+        <PostIt align="right" translateX={200} translateY={-20}>
+            <p class="text-sm font-medium">Bootstrap: ideal para prototipos</p>
+            <p class="text-xs mt-1 opacity-80">
+                Si necesitas algo rápido y funcional, Bootstrap acelera mucho el
+                proceso. Personalizar requiere trabajo extra.
+            </p>
+        </PostIt>
         <ArticleSectionTitle
             title="Tailwindcss"
             description="Enfoque Utility-First"
@@ -114,5 +122,12 @@
             cantidad de clases en el HTML, muchos desarrolladores consideran que
             mejora la velocidad de desarrollo y la mantenibilidad del proyecto.
         </Paragraph>
+        <PostIt align="left" translateX={-60} translateY={-20}>
+            <p class="text-sm font-medium">Utility-First: el inicio es duro</p>
+            <p class="text-xs mt-1 opacity-80">
+                Ver tantas clases en el HTML asusta al principio. Después de
+                una semana, no querés volver a CSS separado.
+            </p>
+        </PostIt>
     </Paper>
 </main>

@@ -166,6 +166,7 @@
             class="
                 relative
                 w-[min(100vw-4rem,800px)]
+                font-serif
 
                 bg-white
                 dark:bg-neutral-850

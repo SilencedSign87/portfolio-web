@@ -4,6 +4,7 @@
     import Paragraph from "@components/article/Paragraph.svelte";
     import CodeBlock from "@components/article/CodeBlock.svelte";
     import Paper from "@components/article/Paper.svelte";
+    import PostIt from "@components/PostIt.svelte";
     import blur1dark from "@assets/blur1dark.jpg";
     import blur1light from "@assets/blur1light.png";
     import ThemeImage from "@components/ThemeImage.svelte";
@@ -102,6 +103,13 @@
             estados de carga, mensajes de error, paneles de autenticación o
             cualquier contenido que dependa del estado de la aplicación.
         </Paragraph>
+        <PostIt align="right" translateX={220} translateY={-20}>
+            <p class="text-sm font-medium">Ternario vs &&</p>
+            <p class="text-xs mt-1 opacity-80">
+                `cond && Comp` es conciso. El ternario es mejor cuando
+                necesitás elegir entre dos opciones explícitas.
+            </p>
+        </PostIt>
 
         <ArticleSectionTitle
             title="Renderizado iterativo"
@@ -217,6 +225,13 @@ function FormularioContacto() {
             Formik simplifican la gestión del estado, la validación y el manejo
             de errores, reduciendo la cantidad de código repetitivo.
         </Paragraph>
+        <PostIt align="left" translateX={70} translateY={-20}>
+            <p class="text-sm font-medium">Control total vs simplicidad</p>
+            <p class="text-xs mt-1 opacity-80">
+                Formularios controlados = más código, pero control absoluto.
+                Para forms simples, no necesitás una librería.
+            </p>
+        </PostIt>
 
         <ArticleSectionTitle
             title="Routing"

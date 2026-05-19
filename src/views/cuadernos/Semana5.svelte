@@ -4,6 +4,7 @@
     import Paragraph from "@components/article/Paragraph.svelte";
     import CodeBlock from "@components/article/CodeBlock.svelte";
     import Paper from "@components/article/Paper.svelte";
+    import PostIt from "@components/PostIt.svelte";
     import blur1dark from "@assets/blur1dark.jpg";
     import blur1light from "@assets/blur1light.png";
     import ThemeImage from "@components/ThemeImage.svelte";
@@ -32,10 +33,11 @@
         <Paragraph>
             En sus inicios, la web se componía de páginas HTML estáticas. Cada
             interacción requería una recarga completa del servidor para obtener
-            nuevo contenido. Con la llegada de AJAX y jQuery, los desarrolladores
-            empezaron a actualizar partes de la página sin recargarla, mejorando
-            la experiencia de usuario. Sin embargo, mantener aplicaciones
-            complejas con este enfoque resultaba difícil y propenso a errores.
+            nuevo contenido. Con la llegada de AJAX y jQuery, los
+            desarrolladores empezaron a actualizar partes de la página sin
+            recargarla, mejorando la experiencia de usuario. Sin embargo,
+            mantener aplicaciones complejas con este enfoque resultaba difícil y
+            propenso a errores.
         </Paragraph>
         <Paragraph>
             La necesidad de estructurar mejor el código del lado del cliente dio
@@ -51,11 +53,12 @@
             description="Renderizado en el navegador"
         ></ArticleSectionTitle>
         <Paragraph>
-            El Client-Side Rendering (CSR) es un enfoque donde el navegador recibe
-            un HTML mínimo con un script de JavaScript que se encarga de construir
-            y renderizar toda la interfaz. Una vez que el script se descarga y
-            ejecuta, la aplicación se vuelve interactiva y las navegaciones
-            posteriores ocurren instantáneamente, sin recargar la página.
+            El Client-Side Rendering (CSR) es un enfoque donde el navegador
+            recibe un HTML mínimo con un script de JavaScript que se encarga de
+            construir y renderizar toda la interfaz. Una vez que el script se
+            descarga y ejecuta, la aplicación se vuelve interactiva y las
+            navegaciones posteriores ocurren instantáneamente, sin recargar la
+            página.
         </Paragraph>
         <Paragraph>
             El flujo típico de CSR comienza con el servidor enviando un archivo
@@ -77,18 +80,18 @@
             description="La librería de interfaces más popular"
         ></ArticleSectionTitle>
         <Paragraph>
-            React es una librería desarrollada por Meta para construir interfaces
-            de usuario basadas en componentes. Su enfoque declarativo permite
-            describir cómo debería verse la interfaz en cada estado, y React se
-            encarga de actualizar el DOM de manera eficiente cuando los datos
-            cambian. Esto simplifica enormemente el desarrollo de aplicaciones
-            interactivas y dinámicas.
+            React es una librería desarrollada por Meta para construir
+            interfaces de usuario basadas en componentes. Su enfoque declarativo
+            permite describir cómo debería verse la interfaz en cada estado, y
+            React se encarga de actualizar el DOM de manera eficiente cuando los
+            datos cambian. Esto simplifica enormemente el desarrollo de
+            aplicaciones interactivas y dinámicas.
         </Paragraph>
         <Paragraph>
             A diferencia de un framework completo, React se centra únicamente en
             la capa de vista. Esto le da flexibilidad, ya que puede combinarse
-            con otras librerías para enrutamiento, gestión de estado o peticiones
-            HTTP según las necesidades del proyecto.
+            con otras librerías para enrutamiento, gestión de estado o
+            peticiones HTTP según las necesidades del proyecto.
         </Paragraph>
 
         <ArticleSectionTitle
@@ -96,8 +99,8 @@
             description="Construyendo interfaces modulares"
         ></ArticleSectionTitle>
         <Paragraph>
-            En React, todo es un componente. Un componente es una función o clase
-            que recibe propiedades (props) y devuelve elementos React que
+            En React, todo es un componente. Un componente es una función o
+            clase que recibe propiedades (props) y devuelve elementos React que
             describen cómo debería renderizarse la interfaz. Los componentes
             pueden anidarse, reutilizarse y combinarse para construir
             aplicaciones complejas de forma modular y mantenible.
@@ -110,6 +113,7 @@
             directamente, por lo que un transpilador como Babel lo convierte en
             llamadas a React.createElement.
         </Paragraph>
+
         <CodeBlock
             code={`import { useState } from "react";
 
@@ -147,7 +151,13 @@ export default function App() {
 }`}
             language="typescript"
         />
-
+        <PostIt align="right" translateX={220} translateY={-50}>
+            <p class="text-sm font-medium">JSX no es obligatorio</p>
+            <p class="text-xs mt-1 opacity-80">
+                Podés usar React sin JSX con React.createElement. Pero JSX hace
+                que el código se lea como la interfaz que representa.
+            </p>
+        </PostIt>
         <ArticleSectionTitle
             title="Estado y Props"
             description="Datos que fluyen en la aplicación"
@@ -173,12 +183,12 @@ export default function App() {
             description="Optimización del renderizado"
         ></ArticleSectionTitle>
         <Paragraph>
-            Una de las innovaciones clave de React es el Virtual DOM. En lugar de
-            manipular el DOM del navegador directamente, React mantiene una copia
-            ligera en memoria. Cuando el estado de un componente cambia, React
-            crea un nuevo Virtual DOM, lo compara con la versión anterior mediante
-            un proceso llamado reconciliación, y calcula el conjunto mínimo de
-            cambios necesarios para actualizar el DOM real.
+            Una de las innovaciones clave de React es el Virtual DOM. En lugar
+            de manipular el DOM del navegador directamente, React mantiene una
+            copia ligera en memoria. Cuando el estado de un componente cambia,
+            React crea un nuevo Virtual DOM, lo compara con la versión anterior
+            mediante un proceso llamado reconciliación, y calcula el conjunto
+            mínimo de cambios necesarios para actualizar el DOM real.
         </Paragraph>
         <Paragraph>
             Este enfoque evita operaciones costosas sobre el DOM y mejora el
@@ -223,9 +233,9 @@ export default function App() {
         <Paragraph>
             Las SPAs ofrecen transiciones rápidas entre vistas y una experiencia
             más fluida, pero presentan desafíos como el SEO, ya que los motores
-            de búsqueda pueden tener dificultades para indexar contenido generado
-            dinámicamente. Para mitigar esto, existen técnicas como Server-Side
-            Rendering (SSR) y Static Site Generation (SSG).
+            de búsqueda pueden tener dificultades para indexar contenido
+            generado dinámicamente. Para mitigar esto, existen técnicas como
+            Server-Side Rendering (SSR) y Static Site Generation (SSG).
         </Paragraph>
 
         <ArticleSectionTitle
@@ -246,10 +256,15 @@ export default function App() {
             del ecosistema React. Esto ofrece lo mejor de ambos mundos:
             rendimiento, SEO e interactividad.
         </Paragraph>
+        <PostIt align="left" translateX={140} translateY={-45}>
+            <p class="text-sm font-medium">No hay estrategia correcta única</p>
+            <p class="text-xs mt-1 opacity-80">
+                CSR, SSR, SSG... cada proyecto necesita un enfoque distinto.
+                Conocerlos te permite elegir bien.
+            </p>
+        </PostIt>
 
-        <ArticleSectionTitle
-            title="En Conclusión"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle title="En Conclusión"></ArticleSectionTitle>
         <Paragraph>
             El desarrollo frontend con JavaScript ha madurado enormemente,
             pasando de simples scripts a aplicaciones complejas impulsadas por

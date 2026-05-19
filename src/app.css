@@ -3,10 +3,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --blueprint-bg: #f8fafc;
+  --blueprint-bg: #f8f8fc;
 
-  --grid-small: rgba(15, 23, 42, 0.06);
-  --grid-large: rgba(15, 23, 42, 0.12);
+  --grid-small: rgba(27, 51, 107, 0.06);
+  --grid-large: rgba(7, 36, 102, 0.12);
 
   --grid-size-small: 24px;
   --grid-size-large: 120px;

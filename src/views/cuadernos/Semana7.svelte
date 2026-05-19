@@ -4,6 +4,7 @@
     import Paragraph from "@components/article/Paragraph.svelte";
     import CodeBlock from "@components/article/CodeBlock.svelte";
     import Paper from "@components/article/Paper.svelte";
+    import PostIt from "@components/PostIt.svelte";
     import blur1dark from "@assets/blur1dark.jpg";
     import blur1light from "@assets/blur1light.png";
     import ThemeImage from "@components/ThemeImage.svelte";
@@ -115,6 +116,13 @@ function Usuario({ usuarioId }) {
             efecto) permite cancelar suscripciones o temporizadores al desmontar
             el componente o antes de re-ejecutar el efecto.
         </Paragraph>
+        <PostIt align="right" translateX={220} translateY={-20}>
+            <p class="text-sm font-medium">Dependencias: el dolor de cabeza</p>
+            <p class="text-xs mt-1 opacity-80">
+                Olvidar una dependencia en useEffect causa bugs silenciosos.
+                El lint plugin react-hooks/exhaustive-deps es tu mejor aliado.
+            </p>
+        </PostIt>
 
         <ArticleSectionTitle
             title="useContext"
@@ -269,6 +277,13 @@ function Lista({ items, filtro }) {
             valores se pasan como props a componentes hijos memoizados con
             React.memo, o cuando el cálculo es verdaderamente costoso.
         </Paragraph>
+        <PostIt align="left" translateX={100} translateY={-20}>
+            <p class="text-sm font-medium">Memoizar no es gratis</p>
+            <p class="text-xs mt-1 opacity-80">
+                useMemo y useCallback tienen su propio costo. Úsalos solo cuando
+                haya un problema de rendimiento medible, no por precaución.
+            </p>
+        </PostIt>
 
         <ArticleSectionTitle
             title="Hooks personalizados"

@@ -3,6 +3,7 @@
     import ArticleSectionTitle from "@components/article/ArticleSectionTitle.svelte";
     import Paragraph from "@components/article/Paragraph.svelte";
     import Paper from "@components/article/Paper.svelte";
+    import PostIt from "@components/PostIt.svelte";
     import blur1dark from "@assets/blur1dark.jpg";
     import blur1light from "@assets/blur1light.png";
     import ThemeImage from "@components/ThemeImage.svelte";
@@ -97,6 +98,13 @@
             <li>API Canvas WebSockets WebRTC</li>
         </ul>
 
+        <PostIt align="right" translateX={220} translateY={-100}>
+            <p class="text-sm font-medium">Las APIs web piden permiso</p>
+            <p class="text-xs mt-1 opacity-80">
+                Geolocalización, notificaciones y cámara siempre requieren
+                consentimiento del usuario por seguridad.
+            </p>
+        </PostIt>
         <ArticleSectionTitle title="Protocolos y comunicación en la web"
         ></ArticleSectionTitle>
         <Paragraph>
@@ -111,6 +119,13 @@
             mediante certificados digitales. Esto garantiza la privacidad y
             protección de los datos transmitidos.
         </Paragraph>
+        <PostIt align="left" translateX={200} translateY={20}>
+            <p class="text-sm font-medium">HTTPS no es opcional hoy</p>
+            <p class="text-xs mt-1 opacity-80">
+                Cifrar la comunicación con HTTPS ya es un requisito mínimo
+                para cualquier sitio profesional.
+            </p>
+        </PostIt>
         <Paragraph>Otros protocolos y formatos importantes incluyen:</Paragraph>
         <ul class="list-disc ml-8">
             <li>URI y URL para la identificación de recursos</li>

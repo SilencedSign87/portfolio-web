@@ -4,6 +4,7 @@
     import Paragraph from "@components/article/Paragraph.svelte";
     import CodeBlock from "@components/article/CodeBlock.svelte";
     import Paper from "@components/article/Paper.svelte";
+    import PostIt from "@components/PostIt.svelte";
     import blur1dark from "@assets/blur1dark.jpg";
     import blur1light from "@assets/blur1light.png";
     import ThemeImage from "@components/ThemeImage.svelte";
@@ -133,7 +134,6 @@ menu.style.borderRadius = "8px";`}
             menús desplegables, modos oscuro y claro, o cualquier interfaz que
             requiera alternar entre estados visuales.
         </Paragraph>
-
         <ArticleSectionTitle
             title="Creación y eliminación de elementos"
             description="Construir y destruir nodos"
@@ -281,6 +281,13 @@ animar();`}
             interfaces híbridas donde los elementos HTML tradicionales interactúan
             con gráficos renderizados dinámicamente.
         </Paragraph>
+        <PostIt align="left" translateX={100} translateY={-45}>
+            <p class="text-sm font-medium">rAF pausa en segundo plano</p>
+            <p class="text-xs mt-1 opacity-80">
+                requestAnimationFrame detiene automáticamente la animación cuando
+                la pestaña no está visible. No malgasta recursos.
+            </p>
+        </PostIt>
 
         <ArticleSectionTitle
             title="En Conclusión"

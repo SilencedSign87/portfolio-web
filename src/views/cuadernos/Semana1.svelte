@@ -3,6 +3,7 @@
     import ArticleSectionTitle from "@components/article/ArticleSectionTitle.svelte";
     import Paragraph from "@components/article/Paragraph.svelte";
     import CodeBlock from "@components/article/CodeBlock.svelte";
+    import PostIt from "@components/PostIt.svelte";
     import Paper from "@components/article/Paper.svelte";
     import blur1dark from "@assets/blur1dark.jpg";
     import blur1light from "@assets/blur1light.png";
@@ -48,6 +49,14 @@
 </html>`}
             language="html"
         />
+        <PostIt align="right" translateX={220} translateY={-50}>
+            <p class="text-sm font-medium">HTML no es tan estricto como parece</p>
+            <p class="text-xs mt-1 opacity-80">
+                Aunque olvidar una etiqueta de cierre puede romper el diseño, el
+                navegador hará todo lo posible por mostrar el contenido igualmente.
+                Por eso a veces una página "rota" se ve bien.
+            </p>
+        </PostIt>
         <ArticleSectionTitle title="CSS" description="Diseño e impresión"
         ></ArticleSectionTitle>
         <Paragraph>
