@@ -1,0 +1,141 @@
+<script lang="ts">
+    import { ChevronLeft } from "@lucide/svelte";
+    import Anchor from "../../components/Anchor.svelte";
+    import { router } from "svelte-spa-router";
+    import { slide } from "svelte/transition";
+
+    import Semana1 from "./Semana1.svelte";
+    import Semana2 from "./Semana2.svelte";
+
+    const components: Record<string, any> = {
+        "semana-1": Semana1,
+        "semana-2": Semana2,
+    };
+
+    let isDetail = $derived(router.location !== "/cuadernos");
+    let slug = $derived(
+        isDetail ? router.location.replace("/cuadernos/", "") : "",
+    );
+    let Component = $derived(isDetail ? components[slug] : null);
+
+    let isStuck = $state(false);
+    let sentinel = $state<HTMLDivElement | null>(null);
+
+    $effect(() => {
+        if (!sentinel) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                isStuck = !entry.isIntersecting;
+            },
+            { threshold: 0 },
+        );
+
+        observer.observe(sentinel);
+
+        return () => observer.disconnect();
+    });
+</script>
+
+<div bind:this={sentinel} class="h-px pointer-events-none"></div>
+<div
+    class={`transition-all duration-100 sticky top-0 z-10 ${
+        isStuck ? "shadow-md" : "px-2 md:px-4 lg:px-12"
+    }`}
+>
+    <header
+        class={`bg-white dark:bg-neutral-800 py-3 px-2 md:px-4 flex items-center justify-between flex-wrap transition-all duration-100 h-16 border ${
+            isStuck ? "border-transparent" : "border-neutral-200 dark:border-neutral-750"
+        }
+        `}
+    >
+        <h1 class="text-lg capitalize">
+            {#if isDetail}
+                {slug.replace(/-/g, " ")}
+            {:else}
+                Cuadernos
+            {/if}
+        </h1>
+        {#if isDetail}
+            <Anchor appearance="transparent" href="/cuadernos">
+                <ChevronLeft />
+            </Anchor>
+        {/if}
+    </header>
+</div>
+
+{#if isDetail}
+    {#if Component}
+        <svelte:component this={Component} />
+    {:else}
+        <p class="text-red-500">Cuaderno "{slug}" no encontrado</p>
+    {/if}
+{:else}
+    <div
+        class="max-w-7xl m-auto flex flex-wrap items-center justify-around transition-all duration-100 py-16 *:min-w-75 gap-12"
+    >
+        <Anchor
+            appearance="outline"
+            class="aspect-[1/1.41] rounded-none"
+            href="/cuadernos/semana-1"
+        >
+            <article>
+                <h2 class="text-xl">Semana 1</h2>
+            </article>
+        </Anchor>
+        <Anchor
+            appearance="outline"
+            class="aspect-[1/1.41] rounded-none"
+            href="/cuadernos/semana-2"
+        >
+            <article>
+                <h2 class="text-xl">Semana 2</h2>
+            </article>
+        </Anchor>
+        <Anchor
+            appearance="outline"
+            class="aspect-[1/1.41] rounded-none"
+            href="/cuadernos/semana-3"
+        >
+            <article>
+                <h2 class="text-xl">Semana 3</h2>
+            </article>
+        </Anchor>
+        <Anchor
+            appearance="outline"
+            class="aspect-[1/1.41] rounded-none"
+            href="/cuadernos/semana-4"
+        >
+            <article>
+                <h2 class="text-xl">Semana 4</h2>
+            </article>
+        </Anchor>
+        <Anchor
+            appearance="outline"
+            class="aspect-[1/1.41] rounded-none"
+            href="/cuadernos/semana-5"
+        >
+            <article>
+                <h2 class="text-xl">Semana 5</h2>
+            </article>
+        </Anchor>
+        <Anchor
+            appearance="outline"
+            class="aspect-[1/1.41] rounded-none"
+            href="/cuadernos/semana-6"
+        >
+            <article>
+                <h2 class="text-xl">Semana 6</h2>
+            </article>
+        </Anchor>
+        <Anchor
+            appearance="outline"
+            class="aspect-[1/1.41] rounded-none"
+            href="/cuadernos/semana-7"
+        >
+            <article>
+                <h2 class="text-xl">Semana 7</h2>
+            </article>
+        </Anchor>
+    </div>
+{/if}
