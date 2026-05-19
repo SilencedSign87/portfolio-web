@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { ChevronLeft } from "@lucide/svelte";
+    import { ChevronLeft, ChevronRight, House } from "@lucide/svelte";
     import Anchor from "../../components/Anchor.svelte";
     import { router } from "svelte-spa-router";
     import { slide } from "svelte/transition";
@@ -12,6 +12,16 @@
     import Semana6 from "./semana6.svelte";
     import Semana7 from "./Semana7.svelte";
 
+    const semanaSlugs = [
+        "semana-1",
+        "semana-2",
+        "semana-3",
+        "semana-4",
+        "semana-5",
+        "semana-6",
+        "semana-7",
+    ];
+
     const components: Record<string, any> = {
         "semana-1": Semana1,
         "semana-2": Semana2,
@@ -21,6 +31,10 @@
         "semana-6": Semana6,
         "semana-7": Semana7,
     };
+
+    let currentIndex = $derived(semanaSlugs.indexOf(slug));
+    let prevSlug = $derived(currentIndex > 0 ? semanaSlugs[currentIndex - 1] : null);
+    let nextSlug = $derived(currentIndex < semanaSlugs.length - 1 ? semanaSlugs[currentIndex + 1] : null);
 
     let isDetail = $derived(router.location !== "/cuadernos");
     let slug = $derived(
@@ -50,14 +64,14 @@
 <div bind:this={sentinel} class="h-px pointer-events-none"></div>
 <div
     class={`transition-all duration-100 sticky top-0 z-10 ${
-        isStuck ? "shadow-md" : "px-2 md:px-4 lg:px-12"
+        isStuck ? "shadow-lg" : "px-2 md:px-4 lg:px-12"
     }`}
 >
     <header
-        class={`bg-white dark:bg-neutral-800 py-3 px-2 md:px-4 flex items-center justify-between flex-wrap transition-all duration-100 h-16 border ${
+        class={`bg-white dark:bg-neutral-800 py-3 px-2 md:px-4 flex items-center justify-between flex-wrap transition-all duration-100 h-16 border border-neutral-200 dark:border-neutral-750 ${
             isStuck
-                ? "border-transparent"
-                : "border-neutral-200 dark:border-neutral-750"
+                ? "border-t-transparent border-r-transparent border-l-transparent"
+                : ""
         }
         `}
     >
@@ -69,9 +83,27 @@
             {/if}
         </h1>
         {#if isDetail}
-            <Anchor appearance="transparent" href="/cuadernos">
-                <ChevronLeft />
-            </Anchor>
+            <nav class="flex items-center gap-2">
+                <Anchor
+                    appearance="transparent"
+                    href={prevSlug ? `/cuadernos/${prevSlug}` : ""}
+                    class={!prevSlug ? "opacity-50 pointer-events-none" : ""}
+                    title={prevSlug ? "Semana anterior" : ""}
+                >
+                    <ChevronLeft />
+                </Anchor>
+                <Anchor appearance="transparent" href="/cuadernos" title="Volver a la lista">
+                    <House />
+                </Anchor>
+                <Anchor
+                    appearance="transparent"
+                    href={nextSlug ? `/cuadernos/${nextSlug}` : ""}
+                    class={!nextSlug ? "opacity-50 pointer-events-none" : ""}
+                    title={nextSlug ? "Semana siguiente" : ""}
+                >
+                    <ChevronRight />
+                </Anchor>
+            </nav>
         {/if}
     </header>
 </div>
@@ -87,8 +119,7 @@
         class="max-w-7xl m-auto flex flex-wrap items-center justify-around transition-all duration-100 py-16 *:min-w-75 gap-12"
     >
         <Anchor
-            appearance="outline"
-            class="aspect-[1/1.41] rounded-none"
+            class="aspect-[1/1.41] rounded-none hover:shadow-lg hover:-translate-y-2 transition-all duration-100"
             href="/cuadernos/semana-1"
         >
             <article>
@@ -96,8 +127,7 @@
             </article>
         </Anchor>
         <Anchor
-            appearance="outline"
-            class="aspect-[1/1.41] rounded-none"
+            class="aspect-[1/1.41] rounded-none hover:shadow-lg hover:-translate-y-2 transition-all duration-100"
             href="/cuadernos/semana-2"
         >
             <article>
@@ -105,8 +135,7 @@
             </article>
         </Anchor>
         <Anchor
-            appearance="outline"
-            class="aspect-[1/1.41] rounded-none"
+            class="aspect-[1/1.41] rounded-none hover:shadow-lg hover:-translate-y-2 transition-all duration-100"
             href="/cuadernos/semana-3"
         >
             <article>
@@ -114,8 +143,7 @@
             </article>
         </Anchor>
         <Anchor
-            appearance="outline"
-            class="aspect-[1/1.41] rounded-none"
+            class="aspect-[1/1.41] rounded-none hover:shadow-lg hover:-translate-y-2 transition-all duration-100"
             href="/cuadernos/semana-4"
         >
             <article>
@@ -123,8 +151,7 @@
             </article>
         </Anchor>
         <Anchor
-            appearance="outline"
-            class="aspect-[1/1.41] rounded-none"
+            class="aspect-[1/1.41] rounded-none hover:shadow-lg hover:-translate-y-2 transition-all duration-100"
             href="/cuadernos/semana-5"
         >
             <article>
@@ -132,8 +159,7 @@
             </article>
         </Anchor>
         <Anchor
-            appearance="outline"
-            class="aspect-[1/1.41] rounded-none"
+            class="aspect-[1/1.41] rounded-none hover:shadow-lg hover:-translate-y-2 transition-all duration-100"
             href="/cuadernos/semana-6"
         >
             <article>
@@ -141,8 +167,7 @@
             </article>
         </Anchor>
         <Anchor
-            appearance="outline"
-            class="aspect-[1/1.41] rounded-none"
+            class="aspect-[1/1.41] rounded-none hover:shadow-lg hover:-translate-y-2 transition-all duration-100"
             href="/cuadernos/semana-7"
         >
             <article>

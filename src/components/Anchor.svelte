@@ -5,11 +5,13 @@
         type buttonAppearance,
     } from "../styles/Button.styles";
     import { twMerge } from "tailwind-merge";
+
     export let href: string = "";
     export let appearance: buttonAppearance = "default";
     export let active: boolean = false;
-    let className: string = "";
     export { className as class };
+    
+    let className: string = "";
     let classes: string = "";
     $: classes = twMerge(buttonStyles({ appearance, active }), className);
     function handleClick(event: MouseEvent) {

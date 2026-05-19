@@ -2,6 +2,45 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+:root {
+  --blueprint-bg: #f8fafc;
+
+  --grid-small: rgba(15, 23, 42, 0.06);
+  --grid-large: rgba(15, 23, 42, 0.12);
+
+  --grid-size-small: 24px;
+  --grid-size-large: 120px;
+}
+
+.dark {
+  --blueprint-bg: #1a1620;
+
+  --grid-small: rgba(255, 255, 255, 0.02);
+  --grid-large: rgba(255, 255, 255, 0.05);
+}
+
+body {
+  background-color: var(--blueprint-bg);
+
+  background-image:
+    linear-gradient(var(--grid-small) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-small) 1px, transparent 1px),
+
+    linear-gradient(var(--grid-large) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-large) 1px, transparent 1px);
+
+  background-size:
+    var(--grid-size-small) var(--grid-size-small),
+    var(--grid-size-small) var(--grid-size-small),
+
+    var(--grid-size-large) var(--grid-size-large),
+    var(--grid-size-large) var(--grid-size-large);
+
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
 @theme{
 
   --color-neutral-150: oklch(94.6% 0 0);
