@@ -4,18 +4,20 @@
     export let id: string | null = null;
 </script>
 
-<div class="flex items-center justify-center mb-8">
+<div class="mb-6">
     <slot name="before" />
 </div>
 
-<h1 {id} class="text-4xl font-medium text-brand-base mb-4 text-center">
+<h1 {id} class="text-4xl font-bold text-brand-base text-center leading-tight">
     {title}
     {#if description}
-        <small class="text-base mb-8 text-center opacity-80 block text-neutral-700 dark:text-neutral-300 font-normal mt-2">
+        <small class="block text-base italic font-normal text-neutral-600 dark:text-neutral-400 mt-3 leading-relaxed">
             {description}
         </small>
     {/if}
 </h1>
+
+<hr class="mx-auto mt-6 w-20 border-brand-base/60" />
 
 <div class="flex items-center justify-center mt-8">
     <slot name="after" />

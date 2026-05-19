@@ -6,10 +6,20 @@
 
     import Semana1 from "./Semana1.svelte";
     import Semana2 from "./Semana2.svelte";
+    import Semana3 from "./Semana3.svelte";
+    import Semana4 from "./Semana4.svelte";
+    import Semana5 from "./Semana5.svelte";
+    import Semana6 from "./semana6.svelte";
+    import Semana7 from "./Semana7.svelte";
 
     const components: Record<string, any> = {
         "semana-1": Semana1,
         "semana-2": Semana2,
+        "semana-3": Semana3,
+        "semana-4": Semana4,
+        "semana-5": Semana5,
+        "semana-6": Semana6,
+        "semana-7": Semana7,
     };
 
     let isDetail = $derived(router.location !== "/cuadernos");
@@ -45,7 +55,9 @@
 >
     <header
         class={`bg-white dark:bg-neutral-800 py-3 px-2 md:px-4 flex items-center justify-between flex-wrap transition-all duration-100 h-16 border ${
-            isStuck ? "border-transparent" : "border-neutral-200 dark:border-neutral-750"
+            isStuck
+                ? "border-transparent"
+                : "border-neutral-200 dark:border-neutral-750"
         }
         `}
     >
