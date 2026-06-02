@@ -25,7 +25,7 @@
         </div>
     {/if}
     {#if title}
-        <h1 class="font-display text-[clamp(36px,6vw,56px)] leading-[1.05] tracking-tighter font-bold text-ink mb-6">
+        <h1 class="headline-lg-mobile headline-lg text-ink mb-6">
             {@html title}
         </h1>
     {/if}

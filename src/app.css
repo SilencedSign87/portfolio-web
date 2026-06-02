@@ -67,6 +67,77 @@
   --radius-xl: 0.75rem;
 }
 
+@utility subheader-stuck {
+  box-shadow: 4px 0 0 0 var(--color-ink);
+}
+
+@utility notfound-box {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 40px;
+  text-align: center;
+  border: 1px dashed var(--color-outline);
+  font-family: var(--font-mono);
+}
+
+@utility dot-grid {
+  background-image: radial-gradient(circle at 1px 1px, var(--color-outline-variant) 1px, transparent 0);
+  background-size: 20px 20px;
+  background-position: 0 0;
+}
+
+/* Typography — DESIGN.md spec */
+@utility headline-lg {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+@utility headline-lg-mobile {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+@utility headline-md {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+@utility headline-sm {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+@utility body-lg {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+@utility body-md {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+@utility label-sm {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
 :root {
   --surface: #fcf8ff;
   --surface-container-lowest: #ffffff;

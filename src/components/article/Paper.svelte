@@ -46,10 +46,8 @@
             width = w;
             height = h;
         };
-        // Initial measure
         const rect = paper.getBoundingClientRect();
         update(rect.width, rect.height);
-        // Watch for resize
         const observer = new ResizeObserver((entries) => {
             for (const entry of entries) {
                 update(entry.contentRect.width, entry.contentRect.height);
@@ -60,125 +58,44 @@
     });
 </script>
 
-<article bind:this={paper} class="paper {className}">
-    <header class="paper__titleblock">
-        <div class="paper__titleblock-cell">
-            <span class="paper__titleblock-label">Hoja</span>
-            <span class="paper__titleblock-value">{sheet}</span>
+<article
+    bind:this={paper}
+    class="relative max-w-[800px] mx-auto bg-surface-container-lowest border border-ink font-mono text-on-surface {className}"
+>
+    <header
+        class="grid grid-cols-4 max-sm:grid-cols-2 border-b border-ink bg-secondary-container *:px-3.5 *:py-[10px] *:flex *:flex-col *:gap-0.5 *:min-w-0 *:border-r *:border-ink *:last:border-r-0"
+    >
+        <div>
+            <span class="text-[10px] uppercase tracking-[0.1em] text-outline">Hoja</span>
+            <span class="text-sm font-bold text-on-surface">{sheet}</span>
         </div>
-        <div class="paper__titleblock-cell paper__titleblock-cell--wide">
-            <span class="paper__titleblock-label">Título</span>
-            <span
-                class="paper__titleblock-value paper__titleblock-value--title"
-            >
+        <div class="col-span-2">
+            <span class="text-[10px] uppercase tracking-[0.1em] text-outline">Título</span>
+            <span class="font-display text-base tracking-tight whitespace-nowrap truncate font-bold text-on-surface">
                 {#if title}{@render title()}{:else}Document{/if}
             </span>
         </div>
-        <div class="paper__titleblock-cell">
-            <span class="paper__titleblock-label">Scala</span>
-            <span class="paper__titleblock-value">{displayScale}</span>
+        <div>
+            <span class="text-[10px] uppercase tracking-[0.1em] text-outline">Scala</span>
+            <span class="text-sm font-bold text-on-surface">{displayScale}</span>
         </div>
-        <div class="paper__titleblock-cell">
-            <span class="paper__titleblock-label">Revisión</span>
-            <span class="paper__titleblock-value">{revision}</span>
+        <div>
+            <span class="text-[10px] uppercase tracking-[0.1em] text-outline">Revisión</span>
+            <span class="text-sm font-bold text-on-surface">{revision}</span>
         </div>
-        <div class="paper__titleblock-cell paper__titleblock-cell--wide">
-            <span class="paper__titleblock-label">Dimensiones</span>
-            <span
-                class="paper__titleblock-value paper__titleblock-value--title"
-            >
+        <div class="col-span-2">
+            <span class="text-[10px] uppercase tracking-[0.1em] text-outline">Dimensiones</span>
+            <span class="font-display text-base tracking-tight whitespace-nowrap truncate font-bold text-on-surface">
                 {displayDimensions}
             </span>
         </div>
-        <div class="paper__titleblock-cell">
-            <span class="paper__titleblock-label">Fecha</span>
-            <span class="paper__titleblock-value">{date}</span>
+        <div>
+            <span class="text-[10px] uppercase tracking-[0.1em] text-outline">Fecha</span>
+            <span class="text-sm font-bold text-on-surface">{date}</span>
         </div>
     </header>
 
-    <div class="paper__body">
+    <div class="dot-grid p-10 pb-14 px-12 max-sm:px-5 max-sm:py-6 max-sm:pb-10">
         {@render children?.()}
     </div>
 </article>
-
-<style>
-    .paper {
-        position: relative;
-        max-width: 800px;
-        margin: 0 auto;
-        background-color: var(--surface-container-lowest);
-        border: 1px solid var(--ink);
-        font-family: var(--font-mono);
-        color: var(--on-surface);
-    }
-
-    .paper__titleblock {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        border-bottom: 1px solid var(--ink);
-        background-color: var(--secondary-container);
-        font-family: var(--font-mono);
-    }
-
-    .paper__titleblock-cell {
-        padding: 10px 14px;
-        border-right: 1px solid var(--ink);
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        min-width: 0;
-    }
-
-    .paper__titleblock-cell:last-child {
-        border-right: none;
-    }
-
-    .paper__titleblock-cell--wide {
-        grid-column: span 2;
-    }
-
-    .paper__titleblock-label {
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--outline);
-    }
-
-    .paper__titleblock-value {
-        font-size: 13px;
-        font-weight: 700;
-        color: var(--on-surface);
-    }
-
-    .paper__titleblock-value--title {
-        font-family: var(--font-display);
-        font-size: 16px;
-        letter-spacing: -0.02em;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .paper__body {
-        padding: 40px 48px 56px;
-        background-image: radial-gradient(
-            circle at 1px 1px,
-            var(--outline-variant) 1px,
-            transparent 0
-        );
-        background-size: 20px 20px;
-        background-position: 0 0;
-    }
-
-    @media (max-width: 640px) {
-        .paper__titleblock {
-            grid-template-columns: 1fr 1fr;
-        }
-        .paper__titleblock-cell--wide {
-            grid-column: span 2;
-        }
-        .paper__body {
-            padding: 24px 20px 40px;
-        }
-    }
-</style>

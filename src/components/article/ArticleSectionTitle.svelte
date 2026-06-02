@@ -27,9 +27,9 @@
             <span class="article-section__number-value">{number ?? "00"}</span>
         </div>
         <div class="article-section__heading">
-            <h2 class="article-section__title">{title}</h2>
+            <h2 class="headline-sm text-on-surface m-0 mb-1">{title}</h2>
             {#if description}
-                <p class="article-section__description">{description}</p>
+                <p class="font-mono text-xs text-outline m-0">{description}</p>
             {/if}
         </div>
         <div class="article-section__anchor" aria-hidden="true">
@@ -76,29 +76,6 @@
 
     .article-section__heading {
         min-width: 0;
-    }
-
-    .article-section__title {
-        font-family: var(--font-display);
-        font-size: 24px;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
-        font-weight: 600;
-        color: var(--on-surface);
-        margin: 0 0 4px;
-    }
-
-    @media (min-width: 768px) {
-        .article-section__title {
-            font-size: 28px;
-        }
-    }
-
-    .article-section__description {
-        font-family: var(--font-mono);
-        font-size: 13px;
-        color: var(--outline);
-        margin: 0;
     }
 
     .article-section__anchor {

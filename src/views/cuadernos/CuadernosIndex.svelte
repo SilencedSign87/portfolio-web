@@ -143,15 +143,18 @@
 
 <!-- Sticky sub-header with technical title block -->
 <div bind:this={sentinel} class="h-px pointer-events-none"></div>
-<div class="cuadernos__subheader" class:is-stuck={isStuck}>
-    <div class="cuadernos__subheader-inner">
-        <div class="cuadernos__subheader-cell">
-            <span class="cuadernos__subheader-label">Sec.</span>
-            <span class="cuadernos__subheader-value">Cuadernos</span>
+<div
+    class="sticky top-0 z-30 bg-paper border-b border-ink"
+    class:subheader-stuck={isStuck}
+>
+    <div class="flex items-stretch max-w-screen-xl mx-auto px-5 py-[10px] font-mono text-[11px] uppercase tracking-[0.06em]">
+        <div class="flex flex-col gap-0.5 min-w-0 px-4 border-r border-outline-variant first:pl-0">
+            <span class="text-outline text-[9px] tracking-[0.12em] uppercase">Sec.</span>
+            <span class="text-on-surface font-bold whitespace-nowrap truncate">Cuadernos</span>
         </div>
-        <div class="cuadernos__subheader-cell cuadernos__subheader-cell--wide">
-            <span class="cuadernos__subheader-label">Doc.</span>
-            <span class="cuadernos__subheader-value">
+        <div class="flex flex-col gap-0.5 min-w-0 flex-1 px-4 border-r border-outline-variant">
+            <span class="text-outline text-[9px] tracking-[0.12em] uppercase">Doc.</span>
+            <span class="text-on-surface font-bold whitespace-nowrap truncate">
                 {#if isDetail && currentMeta}
                     {currentMeta.number} — {currentMeta.title}
                 {:else}
@@ -159,9 +162,9 @@
                 {/if}
             </span>
         </div>
-        <div class="cuadernos__subheader-cell">
-            <span class="cuadernos__subheader-label">Folio</span>
-            <span class="cuadernos__subheader-value">
+        <div class="flex flex-col gap-0.5 min-w-0 px-4 border-r border-outline-variant">
+            <span class="text-outline text-[9px] tracking-[0.12em] uppercase">Folio</span>
+            <span class="text-on-surface font-bold whitespace-nowrap truncate">
                 {isDetail && currentMeta
                     ? `${currentIndex + 1}/${semanaMeta.length}`
                     : `0/${semanaMeta.length}`}
@@ -169,11 +172,11 @@
         </div>
 
         {#if isDetail}
-            <nav class="cuadernos__subheader-nav">
+            <nav class="flex items-center gap-1 pl-4">
                 <Anchor
                     href={prevMeta ? `/cuadernos/${prevMeta.slug}` : ""}
                     appearance="ghost"
-                    class="cuadernos__nav-btn"
+                    class="p-1.5 px-2"
                     title={prevMeta ? `← ${prevMeta.title}` : ""}
                 >
                     <ChevronLeft size={16} />
@@ -182,16 +185,16 @@
                     href="/cuadernos"
                     appearance="outline"
                     size="sm"
-                    class="cuadernos__nav-home"
+                    class="mx-1"
                     title="Volver al índice"
                 >
                     <House size={14} />
-                    <span class="cuadernos__nav-home-text">índice</span>
+                    <span class="hidden sm:inline">índice</span>
                 </Anchor>
                 <Anchor
                     href={nextMeta ? `/cuadernos/${nextMeta.slug}` : ""}
                     appearance="ghost"
-                    class="cuadernos__nav-btn"
+                    class="p-1.5 px-2"
                     title={nextMeta ? `${nextMeta.title} →` : ""}
                 >
                     <ChevronRight size={16} />
@@ -205,8 +208,8 @@
     {#if Component}
         <Component />
     {:else}
-        <div class="cuadernos__notfound">
-            <p>404 — Cuaderno "{slug}" no encontrado en este archivo.</p>
+        <div class="notfound-box">
+            <p class="text-error m-0 mb-5">404 — Cuaderno "{slug}" no encontrado en este archivo.</p>
             <Anchor href="/cuadernos" appearance="primary">
                 Volver al índice
             </Anchor>
@@ -217,7 +220,7 @@
         <ContentHeader
             numeration="§ 02"
             subtitle="Cuadernos de estudio"
-            title="Apuntes trazados<br />en papel rayado."
+            title="Apuntes trazados en papel rayado."
             description="Siete semanas de cursada frontend. Cada lámina resume una unidad: teoría, ejemplos y, a veces, una nota al margen."
         />
 
@@ -235,100 +238,3 @@
     </main>
 {/if}
 
-<style>
-    /* Sub-header */
-    .cuadernos__subheader {
-        position: sticky;
-        top: 0;
-        z-index: 30;
-        background: var(--paper-bg);
-        border-bottom: 1px solid var(--ink);
-    }
-
-    .cuadernos__subheader.is-stuck {
-        box-shadow: 4px 0 0 0 var(--ink);
-    }
-
-    .cuadernos__subheader-inner {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 10px 20px;
-        display: flex;
-        align-items: stretch;
-        gap: 0;
-        font-family: var(--font-mono);
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-    }
-
-    .cuadernos__subheader-cell {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-        padding: 0 16px;
-        border-right: 1px solid var(--outline-variant);
-    }
-
-    .cuadernos__subheader-cell:first-child {
-        padding-left: 0;
-    }
-
-    .cuadernos__subheader-cell--wide {
-        flex: 1;
-        min-width: 0;
-    }
-
-    .cuadernos__subheader-label {
-        color: var(--outline);
-        font-size: 9px;
-        letter-spacing: 0.12em;
-    }
-
-    .cuadernos__subheader-value {
-        color: var(--on-surface);
-        font-weight: 700;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .cuadernos__subheader-nav {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        padding-left: 16px;
-    }
-
-    .cuadernos__subheader-nav :global(.cuadernos__nav-btn) {
-        padding: 6px 8px;
-    }
-
-    .cuadernos__subheader-nav :global(.cuadernos__nav-home) {
-        margin: 0 4px;
-    }
-
-    .cuadernos__nav-home-text {
-        display: none;
-    }
-
-    @media (min-width: 640px) {
-        .cuadernos__nav-home-text {
-            display: inline;
-        }
-    }
-
-    .cuadernos__notfound {
-        max-width: 600px;
-        margin: 80px auto;
-        padding: 40px;
-        text-align: center;
-        border: 1px dashed var(--outline);
-        font-family: var(--font-mono);
-    }
-
-    .cuadernos__notfound p {
-        color: var(--error);
-        margin: 0 0 20px;
-    }
-</style>

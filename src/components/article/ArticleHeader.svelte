@@ -46,12 +46,12 @@
         </span>
     </div>
 
-    <h1 class="article-header__title">
+    <h1 class="headline-lg-mobile headline-lg text-ink mb-5">
         {title}
     </h1>
 
     {#if description}
-        <p class="article-header__description">{description}</p>
+        <p class="body-md text-on-surface-variant max-w-[60ch] mx-auto text-pretty">{description}</p>
     {/if}
 
     <div class="article-header__cutline" aria-hidden="true">
@@ -98,32 +98,6 @@
         width: 20px;
         height: 1px;
         background: var(--outline-variant);
-    }
-
-    .article-header__title {
-        font-family: var(--font-display);
-        font-size: 40px;
-        line-height: 1.05;
-        letter-spacing: -0.03em;
-        font-weight: 700;
-        color: var(--ink);
-        margin: 0 0 20px;
-    }
-
-    @media (min-width: 768px) {
-        .article-header__title {
-            font-size: 56px;
-        }
-    }
-
-    .article-header__description {
-        font-family: var(--font-mono);
-        font-size: 15px;
-        line-height: 1.6;
-        color: var(--on-surface-variant);
-        max-width: 60ch;
-        margin: 0 auto;
-        text-wrap: balance;
     }
 
     .article-header__cutline {

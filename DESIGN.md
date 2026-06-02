@@ -102,6 +102,12 @@ spacing:
   gutter: 20px
 ---
 
+## Framework
+
+All styles **must** use **TailwindCSS v4** exclusively. No raw `<style>` blocks or CSS files should be added to components. Global custom utilities are defined as `@utility` in `src/app.css` for complex patterns that cannot be expressed concisely with Tailwind utilities alone.
+
+---
+
 ## Brand & Style
 
 The visual narrative of the design system is rooted in the "Architect’s Desk"—a workspace where precision meets raw creativity. It bridges the gap between high-level engineering and experimental design. The interface should feel like a living document, blending the warmth of physical paper with the clinical accuracy of technical drafting.
@@ -159,3 +165,93 @@ Shapes are strictly geometric. Standard components use a **4px corner radius** (
 - **Cards:** No shadow. 1px solid border. Title of the card should be separated by a 1px horizontal "cut line."
 - **Progress Bars:** Use a "hatched" pattern fill (diagonal 45-degree lines) for the progress indicator to look like a technical shading technique.
 - **Lists:** Bullet points are replaced with small "+" signs or "x" marks to maintain the coordinate/grid feel.
+
+---
+
+## TailwindCSS Usage
+
+### Convention
+
+- **No raw CSS in components.** All styling uses Tailwind utility classes directly in the template.
+- **Custom utilities** (`@utility` in `src/app.css`) are reserved for patterns that are:
+  - Too complex to express with Tailwind alone (e.g., `dot-grid` background, `box-shadow` offsets).
+  - Repeated across multiple components.
+- **Arbitrary values** (`text-[9px]`, `tracking-[0.12em]`) are acceptable for one-off sizes not covered by the theme scale.
+- **Theme tokens** from the `@theme` block are preferred over raw values (e.g., `text-ink` over `text-[#423d6c]`, `font-mono` over `font-['Space_Mono']`).
+
+### Available Theme Tokens
+
+All tokens in `src/app.css` `@theme` block are usable as Tailwind classes:
+
+| Token | Example usage | Tailwind class |
+|---|---|---|
+| `--color-ink` | Text, borders | `text-ink`, `border-ink`, `bg-ink` |
+| `--color-on-ink` | Text on ink bg | `text-on-ink` |
+| `--color-surface-container-lowest` | Card backgrounds | `bg-surface-container-lowest` |
+| `--color-secondary-container` | Titleblock headers | `bg-secondary-container` |
+| `--color-on-secondary-container` | Text on secondary | `text-on-secondary-container` |
+| `--color-on-surface` | Body text | `text-on-surface` |
+| `--color-on-surface-variant` | Muted body text | `text-on-surface-variant` |
+| `--color-outline` | Borders, labels | `text-outline`, `border-outline` |
+| `--color-outline-variant` | Subtle borders | `border-outline-variant` |
+| `--color-paper` | Page background | `bg-paper` |
+| `--color-error` | Error text | `text-error` |
+| `--font-display` | Headings | `font-display` |
+| `--font-mono` | Body, labels, code | `font-mono` |
+| `--font-hand` | Hand-drawn annotations | `font-hand` |
+
+### Responsive Breakpoints
+
+Use Tailwind's `sm:`, `md:`, `lg:` (min-width) and `max-sm:`, `max-md:`, `max-lg:` (max-width) variants. The grid is:
+- **Mobile first** by default (single column).
+- **`sm:`** (640px) for tablet / 2-column layouts.
+- **`lg:`** (1024px) for desktop / 3-column layouts.
+
+### Applying the Design Language
+
+| Style | How to apply |
+|---|---|
+| **1px solid border (ink)** | `border border-ink` |
+| **1px solid border (outline-variant)** | `border border-outline-variant` |
+| **1px dashed border (outline)** | `border border-dashed border-outline` |
+| **Hard shadow (4px offset)** | Use `@utility subheader-stuck` or `hover:shadow-[4px_4px_0_0_var(--color-ink)]` |
+| **Headline LG** (hero titles) | `headline-lg-mobile headline-lg text-ink` |
+| **Headline MD** (section titles) | `headline-md text-on-surface` |
+| **Headline SM** (subsection titles) | `headline-sm text-on-surface` |
+| **Body LG** (large body) | `body-lg text-on-surface` |
+| **Body MD** (default body) | `body-md text-on-surface` |
+| **Label SM** (technical labels) | `label-sm text-outline` |
+| **Mono label** | `font-mono text-[10px] uppercase tracking-[0.1em] text-outline` |
+| **Display heading** | `font-display text-[22px] leading-[1.15] tracking-tight font-bold text-ink` |
+| **Dot grid background** | Use `@utility dot-grid` |
+| **Titleblock bar** | `grid grid-cols-4 max-sm:grid-cols-2 border-b border-ink bg-secondary-container *:px-3.5 *:py-[10px] *:flex *:flex-col *:gap-0.5 *:min-w-0 *:border-r *:border-ink *:last:border-r-0` |
+| **Card hover** | `hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_var(--color-ink)]` |
+| **Not found box** | Use `@utility notfound-box` |
+| **Sticky stuck shadow** | Use `@utility subheader-stuck` with `class:subheader-stuck={isStuck}` |
+
+---
+
+## Custom `@utility` Classes
+
+Defined in `src/app.css` for patterns that need more than plain Tailwind.
+
+| Utility | CSS | When to use |
+|---|---|---|---|
+| `subheader-stuck` | `box-shadow: 4px 0 0 0 var(--color-ink)` | Sticky subheader when scrolled past trigger point |
+| `notfound-box` | Centered 404 box with dashed outline | Empty state / not-found views |
+| `dot-grid` | Radial-gradient dot pattern background | Paper body backgrounds (mimics grid paper) |
+| `headline-lg` | Space Grotesk, 48px, bold, 1.1, -0.02em | Hero / page-level titles (desktop) |
+| `headline-lg-mobile` | Space Grotesk, 32px, bold, 1.2 | Hero / page-level titles (mobile) |
+| `headline-md` | Space Grotesk, 32px, semibold, 1.2 | Section titles |
+| `headline-sm` | Space Grotesk, 20px, semibold, 1.4 | Subsection titles |
+| `body-lg` | Space Mono, 18px, normal, 1.6 | Large body text |
+| `body-md` | Space Mono, 15px, normal, 1.6 | Default body text |
+| `label-sm` | Space Mono, 12px, medium, 1.0, 0.05em | Technical labels, metadata |
+
+To create a new utility, add it to `src/app.css`:
+
+```css
+@utility my-utility {
+  /* CSS here */
+}
+```
