@@ -9,18 +9,25 @@
     import ThemeImage from "@components/ThemeImage.svelte";
 </script>
 
-<main class="max-w-7xl m-auto mt-12 px-4 pb-12">
-    <Paper>
-        <ArticleHeader title="Librerías frontend">
-            <div slot="before">
+<main class="cuaderno">
+    <Paper sheet="03" revision="A">
+        {#snippet title()}Librerías Frontend — Semana 03{/snippet}
+
+        <ArticleHeader
+            number="03.00"
+            title="Librerías frontend"
+            description="Las librerías frontend son herramientas diseñadas para facilitar el desarrollo de interfaces web modernas. Estas tecnologías proporcionan componentes, estilos y utilidades que permiten crear sitios web de manera más rápida, organizada y adaptable."
+        >
+            {#snippet before()}
                 <ThemeImage
                     lightSrc={blur1light}
                     darkSrc={blur1dark}
                     alt="Imagen de fondo"
-                    className="w-full h-64 object-cover rounded-lg"
+                    class="w-full h-64 object-cover"
                 />
-            </div>
+            {/snippet}
         </ArticleHeader>
+
         <Paragraph>
             Las librerías frontend son herramientas diseñadas para facilitar el
             desarrollo de interfaces web modernas. Estas tecnologías
@@ -35,10 +42,8 @@
             construyen aplicaciones web, reduciendo el tiempo de desarrollo y
             mejorando la consistencia visual de los proyectos.
         </Paragraph>
-        <ArticleSectionTitle
-            title="Bootstrap"
-            description="Desarrollo basado en componentes"
-        ></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="03.01" title="Bootstrap" description="Desarrollo basado en componentes" />
         <Paragraph>
             Bootstrap es uno de los frameworks frontend más populares y
             utilizados en el desarrollo web. Fue creado por X Corp. con el
@@ -46,7 +51,7 @@
             web responsivos.
         </Paragraph>
         <Paragraph>Bootstrap ofrece una colección de componentes prediseñados como:</Paragraph>
-        <ul class="list-disc ml-8">
+        <ul class="cuaderno__list">
             <li>Barras de navegación</li>
             <li>Botones</li>
             <li>Formularios</li>
@@ -73,26 +78,21 @@
             pueden presentar apariencias similares si no se personalizan
             adecuadamente.
         </Paragraph>
-        <PostIt align="right" translateX={200} translateY={-20}>
-            <p class="text-sm font-medium">Bootstrap: ideal para prototipos</p>
-            <p class="text-xs mt-1 opacity-80">
-                Si necesitas algo rápido y funcional, Bootstrap acelera mucho el
-                proceso. Personalizar requiere trabajo extra.
-            </p>
+
+        <PostIt number="N.04" title="Bootstrap: ideal para prototipos" align="right">
+            <p>Si necesitás algo rápido y funcional, Bootstrap acelera mucho el proceso. Personalizar requiere trabajo extra.</p>
         </PostIt>
-        <ArticleSectionTitle
-            title="Tailwindcss"
-            description="Enfoque Utility-First"
-        ></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="03.02" title="Tailwind CSS" description="Enfoque Utility-First" />
         <Paragraph>
             Tailwind CSS es un framework moderno que adopta una filosofía
-            diferente conocida como “Utility-First”. En lugar de proporcionar
+            diferente conocida como "Utility-First". En lugar de proporcionar
             componentes completos prediseñados, Tailwind ofrece clases
             utilitarias pequeñas y reutilizables que permiten construir
             interfaces directamente desde el HTML.
         </Paragraph>
         <Paragraph>Por ejemplo, es posible controlar:</Paragraph>
-        <ul class="list-disc ml-8">
+        <ul class="cuaderno__list">
             <li>Colores</li>
             <li>Márgenes</li>
             <li>Espaciados</li>
@@ -102,10 +102,7 @@
             <li>Sombras</li>
             <li>Posicionamiento</li>
         </ul>
-        <Paragraph>
-            Todo esto mediante clases específicas aplicadas directamente a los
-            elementos.
-        </Paragraph>
+        <Paragraph>Todo esto mediante clases específicas aplicadas directamente a los elementos.</Paragraph>
         <Paragraph>
             Este enfoque brinda un alto nivel de personalización y evita la
             necesidad de escribir CSS extenso. Los desarrolladores pueden crear
@@ -122,12 +119,42 @@
             cantidad de clases en el HTML, muchos desarrolladores consideran que
             mejora la velocidad de desarrollo y la mantenibilidad del proyecto.
         </Paragraph>
-        <PostIt align="left" translateX={-60} translateY={-20}>
-            <p class="text-sm font-medium">Utility-First: el inicio es duro</p>
-            <p class="text-xs mt-1 opacity-80">
-                Ver tantas clases en el HTML asusta al principio. Después de
-                una semana, no querés volver a CSS separado.
-            </p>
+
+        <PostIt number="N.05" title="Utility-First: el inicio es duro" align="left">
+            <p>Ver tantas clases en el HTML asusta al principio. Después de una semana, no querés volver a CSS separado.</p>
         </PostIt>
     </Paper>
 </main>
+
+<style>
+    .cuaderno {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 40px 20px 80px;
+    }
+
+    .cuaderno__list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 24px;
+        font-family: var(--font-mono);
+    }
+
+    .cuaderno__list li {
+        position: relative;
+        padding: 6px 0 6px 24px;
+        border-bottom: 1px dotted var(--outline-variant);
+        font-size: 14px;
+        color: var(--on-surface);
+    }
+
+    .cuaderno__list li::before {
+        content: "+";
+        position: absolute;
+        left: 0;
+        top: 6px;
+        color: var(--ink);
+        font-weight: 700;
+    }
+</style>
+

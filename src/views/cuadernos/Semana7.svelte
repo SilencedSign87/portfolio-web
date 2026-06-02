@@ -10,26 +10,26 @@
     import ThemeImage from "@components/ThemeImage.svelte";
 </script>
 
-<main class="max-w-7xl m-auto mt-12 px-4 pb-12">
-    <Paper>
+<main class="cuaderno">
+    <Paper sheet="07" revision="A">
+        {#snippet title()}Hooks en Profundidad — Semana 07{/snippet}
+
         <ArticleHeader
+            number="07.00"
             title="Uso de hooks"
-            description="UseState / UseEffect / UseContext / UseRef / UseReducer / UseCallback / useMemo y Hooks Personalizados"
+            description="useState / useEffect / useContext / useRef / useReducer / useCallback / useMemo y Hooks Personalizados"
         >
-            <div slot="before">
+            {#snippet before()}
                 <ThemeImage
                     lightSrc={blur1light}
                     darkSrc={blur1dark}
                     alt="Imagen de fondo"
-                    className="w-full h-64 object-cover rounded-sm"
+                    class="w-full h-64 object-cover"
                 />
-            </div>
+            {/snippet}
         </ArticleHeader>
 
-        <ArticleSectionTitle
-            title="¿Qué son los hooks?"
-            description="Funciones que conectan el estado a componentes funcionales"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="07.01" title="¿Qué son los hooks?" description="Funciones que conectan el estado a componentes funcionales" />
         <Paragraph>
             Los hooks son funciones introducidas en React 16.8 que permiten usar
             estado y otras características de React sin escribir clases. Con ellos,
@@ -40,10 +40,7 @@
             dentro de funciones de React.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="useState"
-            description="Estado en componentes funcionales"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="07.02" title="useState" description="Estado en componentes funcionales" />
         <Paragraph>
             useState es el hook más básico y fundamental. Declara una variable de
             estado que persiste entre renderizados y un actualizador que permite
@@ -51,6 +48,8 @@
             componente con el nuevo valor, reflejando los cambios en la interfaz.
         </Paragraph>
         <CodeBlock
+            language="typescript"
+            filename="Contador.tsx"
             code={`import { useState } from 'react';
 
 function Contador() {
@@ -65,7 +64,6 @@ function Contador() {
         </div>
     );
 }`}
-            language="typescript"
         />
         <Paragraph>
             El estado puede ser de cualquier tipo: números, strings, objetos o
@@ -74,10 +72,7 @@ function Contador() {
             cambios por identidad de referencia.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="useEffect"
-            description="Efectos secundarios y ciclo de vida"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="07.03" title="useEffect" description="Efectos secundarios y ciclo de vida" />
         <Paragraph>
             useEffect ejecuta código después de que el componente se ha renderizado,
             permitiendo realizar efectos secundarios como peticiones HTTP,
@@ -85,6 +80,8 @@ function Contador() {
             arreglo de dependencias que controla cuándo debe ejecutarse de nuevo.
         </Paragraph>
         <CodeBlock
+            language="typescript"
+            filename="Usuario.tsx"
             code={`import { useState, useEffect } from 'react';
 
 function Usuario({ usuarioId }) {
@@ -107,7 +104,6 @@ function Usuario({ usuarioId }) {
     if (cargando) return <p>Cargando...</p>;
     return <h1>{datos.nombre}</h1>;
 }`}
-            language="typescript"
         />
         <Paragraph>
             El arreglo de dependencias es clave: si está vacío, el efecto se ejecuta
@@ -116,18 +112,12 @@ function Usuario({ usuarioId }) {
             efecto) permite cancelar suscripciones o temporizadores al desmontar
             el componente o antes de re-ejecutar el efecto.
         </Paragraph>
-        <PostIt align="right" translateX={220} translateY={-20}>
-            <p class="text-sm font-medium">Dependencias: el dolor de cabeza</p>
-            <p class="text-xs mt-1 opacity-80">
-                Olvidar una dependencia en useEffect causa bugs silenciosos.
-                El lint plugin react-hooks/exhaustive-deps es tu mejor aliado.
-            </p>
+
+        <PostIt number="N.11" title="Dependencias: el dolor de cabeza" align="right" variant="warning">
+            <p>Olvidar una dependencia en useEffect causa bugs silenciosos. El lint plugin react-hooks/exhaustive-deps es tu mejor aliado.</p>
         </PostIt>
 
-        <ArticleSectionTitle
-            title="useContext"
-            description="Estado global sin prop drilling"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="07.04" title="useContext" description="Estado global sin prop drilling" />
         <Paragraph>
             useContext consume un contexto creado con createContext, evitando pasar
             props manualmente por cada nivel del árbol de componentes. Es la
@@ -135,6 +125,8 @@ function Usuario({ usuarioId }) {
             autenticación o preferencias del usuario.
         </Paragraph>
         <CodeBlock
+            language="typescript"
+            filename="Tema.tsx"
             code={`import { createContext, useContext, useState } from 'react';
 
 const TemaContexto = createContext();
@@ -158,13 +150,9 @@ function BotonTema() {
         </button>
     );
 }`}
-            language="typescript"
         />
 
-        <ArticleSectionTitle
-            title="useRef"
-            description="Referencias mutables y acceso al DOM"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="07.05" title="useRef" description="Referencias mutables y acceso al DOM" />
         <Paragraph>
             useRef crea un objeto mutable que persiste durante todo el ciclo de
             vida del componente. Su valor puede modificarse sin provocar
@@ -173,6 +161,8 @@ function BotonTema() {
             temporizadores.
         </Paragraph>
         <CodeBlock
+            language="typescript"
+            filename="InputAutofoco.tsx"
             code={`import { useRef } from 'react';
 
 function InputAutofoco() {
@@ -189,13 +179,9 @@ function InputAutofoco() {
         </>
     );
 }`}
-            language="typescript"
         />
 
-        <ArticleSectionTitle
-            title="useReducer"
-            description="Estado complejo con lógica predecible"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="07.06" title="useReducer" description="Estado complejo con lógica predecible" />
         <Paragraph>
             useReducer es una alternativa a useState cuando el estado tiene una
             estructura compleja o múltiples transiciones. Recibe un reducer (una
@@ -204,6 +190,8 @@ function InputAutofoco() {
             muchos campos o lógica de estado condicional.
         </Paragraph>
         <CodeBlock
+            language="typescript"
+            filename="ContadorReducer.tsx"
             code={`import { useReducer } from 'react';
 
 function reductor(estado, accion) {
@@ -231,21 +219,19 @@ function ContadorReducer() {
         </>
     );
 }`}
-            language="typescript"
         />
 
-        <ArticleSectionTitle
-            title="useCallback y useMemo"
-            description="Optimización del rendimiento"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="07.07" title="useCallback y useMemo" description="Optimización del rendimiento" />
         <Paragraph>
-            useCallback memoriza una función para que no se recre en cada
+            useCallback memoriza una función para que no se recree en cada
             renderizado a menos que sus dependencias cambien. useMemo memoriza
             el resultado de un cálculo costoso. Ambos son herramientas de
             optimización que deben usarse con criterio, solo cuando se identifiquen
             problemas de rendimiento reales.
         </Paragraph>
         <CodeBlock
+            language="typescript"
+            filename="Lista.tsx"
             code={`import { useState, useCallback, useMemo } from 'react';
 
 function Lista({ items, filtro }) {
@@ -269,7 +255,6 @@ function Lista({ items, filtro }) {
         </ul>
     );
 }`}
-            language="typescript"
         />
         <Paragraph>
             El uso excesivo de estos hooks puede empeorar el rendimiento en lugar
@@ -277,18 +262,12 @@ function Lista({ items, filtro }) {
             valores se pasan como props a componentes hijos memoizados con
             React.memo, o cuando el cálculo es verdaderamente costoso.
         </Paragraph>
-        <PostIt align="left" translateX={100} translateY={-20}>
-            <p class="text-sm font-medium">Memoizar no es gratis</p>
-            <p class="text-xs mt-1 opacity-80">
-                useMemo y useCallback tienen su propio costo. Úsalos solo cuando
-                haya un problema de rendimiento medible, no por precaución.
-            </p>
+
+        <PostIt number="N.12" title="Memoizar no es gratis" align="left">
+            <p>useMemo y useCallback tienen su propio costo. Úsalos solo cuando haya un problema de rendimiento medible, no por precaución.</p>
         </PostIt>
 
-        <ArticleSectionTitle
-            title="Hooks personalizados"
-            description="Tu propia lógica reutilizable"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="07.08" title="Hooks personalizados" description="Tu propia lógica reutilizable" />
         <Paragraph>
             Los hooks personalizados permiten extraer lógica repetitiva en
             funciones reutilizables. Un custom hook es una función JavaScript que
@@ -297,6 +276,8 @@ function Lista({ items, filtro }) {
             necesite.
         </Paragraph>
         <CodeBlock
+            language="typescript"
+            filename="useFetch.ts"
             code={`import { useState, useEffect } from 'react';
 
 function useFetch(url) {
@@ -325,7 +306,6 @@ function Perfil() {
     if (cargando) return <p>Cargando...</p>;
     return <h1>{datos.nombre}</h1>;
 }`}
-            language="typescript"
         />
         <Paragraph>
             Los hooks personalizados son una de las características más poderosas
@@ -335,10 +315,7 @@ function Perfil() {
             limpios y enfocados en la interfaz.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="Reglas de los hooks"
-            description="Buenas prácticas esenciales"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="07.09" title="Reglas de los hooks" description="Buenas prácticas esenciales" />
         <Paragraph>
             Existen dos reglas fundamentales. La primera: los hooks solo deben
             llamarse en el nivel superior del componente, nunca dentro de
@@ -354,9 +331,7 @@ function Perfil() {
             manera predecible y consistente.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="En Conclusión"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="07.10" title="En conclusión" />
         <Paragraph>
             Los hooks transformaron la forma de escribir componentes en React,
             haciendo el código más limpio, reutilizable y fácil de entender.
@@ -368,3 +343,12 @@ function Perfil() {
         </Paragraph>
     </Paper>
 </main>
+
+<style>
+    .cuaderno {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 40px 20px 80px;
+    }
+</style>
+

@@ -10,24 +10,26 @@
     import ThemeImage from "@components/ThemeImage.svelte";
 </script>
 
-<main class="max-w-7xl m-auto mt-12 px-4 pb-12">
-    <Paper>
+<main class="cuaderno">
+    <Paper sheet="01" revision="A">
+        {#snippet title()}Fundamentos Web — Semana 01{/snippet}
+
         <ArticleHeader
+            number="01.00"
             title="Fundamentos de las tecnologías web"
             description="Los servicios web modernos son la base de gran parte de las aplicaciones digitales que usamos diariamente: redes sociales, plataformas de streaming, banca en línea y aplicaciones móviles. Su principal objetivo es permitir que diferentes sistemas se comuniquen entre sí de forma rápida, segura y escalable a través de internet."
         >
-            <div slot="before">
+            {#snippet before()}
                 <ThemeImage
                     lightSrc={blur1light}
                     darkSrc={blur1dark}
                     alt="Imagen de fondo"
-                    className="w-full h-64 object-cover rounded-sm"
+                    class="w-full h-64 object-cover"
                 />
-            </div>
+            {/snippet}
         </ArticleHeader>
 
-        <ArticleSectionTitle title="HTML" description="La estructura de la web"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="01.01" title="HTML" description="La estructura de la web" />
         <Paragraph>
             El lenguaje HTML (HyperText Markup Language) se utiliza para crear la
             estructura básica de una página web. Define elementos como títulos,
@@ -35,6 +37,8 @@
             para organizar su contenido de manera clara y accesible.
         </Paragraph>
         <CodeBlock
+            language="html"
+            filename="index.html"
             code={`<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -47,18 +51,15 @@
     <img src="imagen.jpg" alt="Descripción" />
 </body>
 </html>`}
-            language="html"
         />
-        <PostIt align="right" translateX={220} translateY={-50}>
-            <p class="text-sm font-medium">HTML no es tan estricto como parece</p>
-            <p class="text-xs mt-1 opacity-80">
+        <PostIt number="N.01" title="HTML no es tan estricto" align="right">
+            <p>
                 Aunque olvidar una etiqueta de cierre puede romper el diseño, el
                 navegador hará todo lo posible por mostrar el contenido igualmente.
-                Por eso a veces una página "rota" se ve bien.
             </p>
         </PostIt>
-        <ArticleSectionTitle title="CSS" description="Diseño e impresión"
-        ></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="01.02" title="CSS" description="Diseño e impresión" />
         <Paragraph>
             CSS (Cascading Style Sheets) es el lenguaje encargado de la apariencia
             visual de las páginas web. Permite modificar colores, tamaños, fuentes y
@@ -66,6 +67,8 @@
             dispositivos como computadoras, tabletas y teléfonos móviles.
         </Paragraph>
         <CodeBlock
+            language="css"
+            filename="styles.css"
             code={`body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -88,12 +91,9 @@ h1 {
         padding: 10px;
     }
 }`}
-            language="css"
         />
-        <ArticleSectionTitle
-            title="Javascript"
-            description="Interactividad y dinamismo"
-        ></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="01.03" title="JavaScript" description="Interactividad y dinamismo" />
         <Paragraph>
             JavaScript añade funciones dinámicas e interactivas a los sitios web.
             Con este lenguaje es posible crear menús interactivos, formularios
@@ -101,6 +101,8 @@ h1 {
             directamente en el navegador.
         </Paragraph>
         <CodeBlock
+            language="javascript"
+            filename="app.js"
             code={`// Mostrar un mensaje en la consola
 console.log("¡Hola, mundo!");
 
@@ -118,32 +120,33 @@ document.querySelector("button")
 fetch("https://api.example.com/datos")
     .then(res => res.json())
     .then(data => console.log(data));`}
-            language="javascript"
         />
-        <ArticleSectionTitle title="Servidores y Clientes"></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="01.04" title="Servidores y Clientes" />
         <Paragraph>
             En la web existen dos componentes principales: el cliente y el servidor.
             El cliente es el navegador utilizado por el usuario, mientras que el
             servidor almacena y entrega la información solicitada. Ambos se
             comunican mediante protocolos como HTTP y HTTPS.
         </Paragraph>
-        <ArticleSectionTitle title="Bases de datos"></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="01.05" title="Bases de datos" />
         <Paragraph>
             Las bases de datos permiten almacenar información de manera organizada.
             Sitios web modernos utilizan sistemas de bases de datos para guardar
             usuarios, productos, publicaciones y otros datos importantes. Algunas
             tecnologías comunes son MySQL, PostgreSQL y MongoDB.
         </Paragraph>
-        <ArticleSectionTitle title="Frameworks y herramientas modernas"
-        ></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="01.06" title="Frameworks y herramientas modernas" />
         <Paragraph>
             Actualmente existen frameworks que facilitan el desarrollo web, como
             React, Angular, Svelte y Vue para el frontend, y Node.js, Django o
             Laravel para el backend. Estas herramientas ayudan a crear aplicaciones
             más rápidas, escalables y fáciles de mantener.
         </Paragraph>
-        <ArticleSectionTitle title="En Conclusión"
-        ></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="01.07" title="En conclusión" />
         <Paragraph>
             Los fundamentos de las tecnologías web son esenciales para comprender
             cómo funciona Internet. HTML, CSS y JavaScript forman la base del
@@ -152,3 +155,12 @@ fetch("https://api.example.com/datos")
         </Paragraph>
     </Paper>
 </main>
+
+<style>
+    .cuaderno {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 40px 20px 80px;
+    }
+</style>
+

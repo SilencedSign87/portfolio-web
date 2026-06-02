@@ -10,26 +10,26 @@
     import ThemeImage from "@components/ThemeImage.svelte";
 </script>
 
-<main class="max-w-7xl m-auto mt-12 px-4 pb-12">
-    <Paper>
+<main class="cuaderno">
+    <Paper sheet="06" revision="A">
+        {#snippet title()}Eventos y Renderizado — Semana 06{/snippet}
+
         <ArticleHeader
+            number="06.00"
             title="Eventos, condicionales y bucles en JavaScript"
             description="Eventos, Renderizado condicional / Renderizado iterativo, Formularios / Routing"
         >
-            <div slot="before">
+            {#snippet before()}
                 <ThemeImage
                     lightSrc={blur1light}
                     darkSrc={blur1dark}
                     alt="Imagen de fondo"
-                    className="w-full h-64 object-cover rounded-sm"
+                    class="w-full h-64 object-cover"
                 />
-            </div>
+            {/snippet}
         </ArticleHeader>
 
-        <ArticleSectionTitle
-            title="Eventos en JavaScript"
-            description="Responder a las interacciones del usuario"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="06.01" title="Eventos en JavaScript" description="Responder a las interacciones del usuario" />
         <Paragraph>
             Los eventos son acciones que ocurren en el navegador, como un clic,
             una pulsación de tecla, el envío de un formulario o el movimiento del
@@ -53,10 +53,7 @@
             stopPropagation detiene la propagación del evento a elementos padres.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="Renderizado condicional"
-            description="Mostrar contenido según condiciones"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="06.02" title="Renderizado condicional" description="Mostrar contenido según condiciones" />
         <Paragraph>
             El renderizado condicional permite mostrar u ocultar partes de la
             interfaz según el estado de la aplicación. En React, se utiliza
@@ -73,6 +70,8 @@
             del return.
         </Paragraph>
         <CodeBlock
+            language="typescript"
+            filename="PanelUsuario.tsx"
             code={`function PanelUsuario({ usuario, cargando }) {
     if (cargando) {
         return <p>Cargando...</p>;
@@ -96,25 +95,18 @@
         </div>
     );
 }`}
-            language="typescript"
         />
         <Paragraph>
             Este patrón es fundamental en aplicaciones modernas para mostrar
             estados de carga, mensajes de error, paneles de autenticación o
             cualquier contenido que dependa del estado de la aplicación.
         </Paragraph>
-        <PostIt align="right" translateX={220} translateY={-20}>
-            <p class="text-sm font-medium">Ternario vs &&</p>
-            <p class="text-xs mt-1 opacity-80">
-                `cond && Comp` es conciso. El ternario es mejor cuando
-                necesitás elegir entre dos opciones explícitas.
-            </p>
+
+        <PostIt number="N.09" title="Ternario vs &&" align="right">
+            <p><code>cond &amp;&amp; Comp</code> es conciso. El ternario es mejor cuando necesitás elegir entre dos opciones explícitas.</p>
         </PostIt>
 
-        <ArticleSectionTitle
-            title="Renderizado iterativo"
-            description="Listas y colecciones"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="06.03" title="Renderizado iterativo" description="Listas y colecciones" />
         <Paragraph>
             El renderizado iterativo permite generar elementos a partir de
             arreglos o colecciones de datos. En React, el método map es la
@@ -132,6 +124,8 @@
             eficiente.
         </Paragraph>
         <CodeBlock
+            language="typescript"
+            filename="ListaTareas.tsx"
             code={`function ListaTareas({ tareas }) {
     return (
         <ul>
@@ -154,13 +148,9 @@ const tareasIniciales = [
     { id: 2, titulo: "Crear un proyecto", completada: false },
     { id: 3, titulo: "Publicar en producción", completada: false },
 ];`}
-            language="typescript"
         />
 
-        <ArticleSectionTitle
-            title="Formularios"
-            description="Entrada de datos del usuario"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="06.04" title="Formularios" description="Entrada de datos del usuario" />
         <Paragraph>
             Los formularios son el medio principal para que los usuarios
             introduzcan datos en una aplicación web. En React, los formularios
@@ -177,6 +167,8 @@ const tareasIniciales = [
             el formulario, y preventDefault evita la recarga de la página.
         </Paragraph>
         <CodeBlock
+            language="typescript"
+            filename="FormularioContacto.tsx"
             code={`import { useState } from "react";
 
 function FormularioContacto() {
@@ -218,25 +210,18 @@ function FormularioContacto() {
         </form>
     );
 }`}
-            language="typescript"
         />
         <Paragraph>
             Para formularios muy extensos, librerías como React Hook Form o
             Formik simplifican la gestión del estado, la validación y el manejo
             de errores, reduciendo la cantidad de código repetitivo.
         </Paragraph>
-        <PostIt align="left" translateX={70} translateY={-20}>
-            <p class="text-sm font-medium">Control total vs simplicidad</p>
-            <p class="text-xs mt-1 opacity-80">
-                Formularios controlados = más código, pero control absoluto.
-                Para forms simples, no necesitás una librería.
-            </p>
+
+        <PostIt number="N.10" title="Control total vs simplicidad" align="left">
+            <p>Formularios controlados = más código, pero control absoluto. Para forms simples, no necesitás una librería.</p>
         </PostIt>
 
-        <ArticleSectionTitle
-            title="Routing"
-            description="Navegación entre vistas"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="06.05" title="Routing" description="Navegación entre vistas" />
         <Paragraph>
             El routing del lado del cliente permite navegar entre diferentes
             vistas de una aplicación sin recargar la página. En el ecosistema
@@ -253,9 +238,7 @@ function FormularioContacto() {
             mantener la URL sincronizada con el estado de la aplicación.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="En Conclusión"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="06.06" title="En conclusión" />
         <Paragraph>
             Eventos, condicionales, bucles, formularios y routing son conceptos
             fundamentales en el desarrollo frontend moderno. Los eventos
@@ -268,3 +251,21 @@ function FormularioContacto() {
         </Paragraph>
     </Paper>
 </main>
+
+<style>
+    .cuaderno {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 40px 20px 80px;
+    }
+
+    .cuaderno :global(code) {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        background: var(--secondary-container);
+        color: var(--ink);
+        padding: 1px 6px;
+        border: 1px solid var(--outline-variant);
+    }
+</style>
+

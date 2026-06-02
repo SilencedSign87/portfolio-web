@@ -10,26 +10,26 @@
     import ThemeImage from "@components/ThemeImage.svelte";
 </script>
 
-<main class="max-w-7xl m-auto mt-12 px-4 pb-12">
-    <Paper>
+<main class="cuaderno">
+    <Paper sheet="04" revision="A">
+        {#snippet title()}DOM &amp; Canvas — Semana 04{/snippet}
+
         <ArticleHeader
+            number="04.00"
             title="Manipulación del DOM con JavaScript y Canvas"
             description="El DOM (Document Object Model) es la representación estructurada de una página web que permite a JavaScript interactuar con el contenido, la estructura y los estilos. Junto con Canvas, forman una combinación poderosa para crear experiencias visuales dinámicas directamente en el navegador."
         >
-            <div slot="before">
+            {#snippet before()}
                 <ThemeImage
                     lightSrc={blur1light}
                     darkSrc={blur1dark}
                     alt="Imagen de fondo"
-                    className="w-full h-64 object-cover rounded-lg"
+                    class="w-full h-64 object-cover"
                 />
-            </div>
+            {/snippet}
         </ArticleHeader>
 
-        <ArticleSectionTitle
-            title="¿Qué es el DOM?"
-            description="El modelo de objetos del documento"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="04.01" title="¿Qué es el DOM?" description="El modelo de objetos del documento" />
         <Paragraph>
             El DOM es una interfaz de programación que representa un documento HTML
             como un árbol de nodos. Cada elemento, atributo y fragmento de texto se
@@ -45,10 +45,7 @@
             la estructura del documento.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="Selección de elementos"
-            description="Acceder a los nodos del DOM"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="04.02" title="Selección de elementos" description="Acceder a los nodos del DOM" />
         <Paragraph>
             Para manipular el DOM, primero es necesario seleccionar los elementos
             objetivo. El método getElementById selecciona un elemento por su
@@ -58,6 +55,8 @@
             con el selector, retornando una NodeList que puede recorrerse.
         </Paragraph>
         <CodeBlock
+            language="javascript"
+            filename="dom-select.js"
             code={`// Selección por ID
 const header = document.getElementById("header");
 
@@ -72,7 +71,6 @@ todosLosItems.forEach((item, index) => {
 
 // Selección por clase
 const tarjetas = document.getElementsByClassName("tarjeta");`}
-            language="javascript"
         />
         <Paragraph>
             Estos métodos son la puerta de entrada a cualquier manipulación del DOM.
@@ -80,10 +78,7 @@ const tarjetas = document.getElementsByClassName("tarjeta");`}
             sus propiedades, contenido y estilos.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="Modificar contenido y atributos"
-            description="Cambiar texto, HTML y atributos"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="04.03" title="Modificar contenido y atributos" description="Cambiar texto, HTML y atributos" />
         <Paragraph>
             La propiedad textContent permite modificar el texto visible de un
             elemento, mientras que innerHTML permite insertar o modificar código
@@ -98,10 +93,7 @@ const tarjetas = document.getElementsByClassName("tarjeta");`}
             confiables, debido a posibles ataques de inyección de código.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="Estilos y clases CSS"
-            description="Control visual desde JavaScript"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="04.04" title="Estilos y clases CSS" description="Control visual desde JavaScript" />
         <Paragraph>
             La propiedad style permite modificar estilos en línea de un elemento.
             Cada propiedad CSS se escribe en formato camelCase, por ejemplo
@@ -111,6 +103,8 @@ const tarjetas = document.getElementsByClassName("tarjeta");`}
             de forma eficiente.
         </Paragraph>
         <CodeBlock
+            language="javascript"
+            filename="styles.js"
             code={`const menu = document.querySelector(".menu");
 const boton = document.getElementById("menu-toggle");
 
@@ -127,17 +121,14 @@ if (menu.classList.contains("activo")) {
 // Estilo en línea
 menu.style.backgroundColor = "#1a1a2e";
 menu.style.borderRadius = "8px";`}
-            language="javascript"
         />
         <Paragraph>
             classList.toggle resulta especialmente útil para funcionalidades como
             menús desplegables, modos oscuro y claro, o cualquier interfaz que
             requiera alternar entre estados visuales.
         </Paragraph>
-        <ArticleSectionTitle
-            title="Creación y eliminación de elementos"
-            description="Construir y destruir nodos"
-        ></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="04.05" title="Creación y eliminación de elementos" description="Construir y destruir nodos" />
         <Paragraph>
             createElement permite generar nuevos elementos HTML desde JavaScript.
             Una vez creado, se le pueden asignar atributos, clases y contenido antes
@@ -151,10 +142,7 @@ menu.style.borderRadius = "8px";`}
             componentes se renderizan según los datos disponibles.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="Eventos"
-            description="Responder a las acciones del usuario"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="04.06" title="Eventos" description="Responder a las acciones del usuario" />
         <Paragraph>
             Los eventos permiten que una página web reaccione ante interacciones
             como clics, movimientos del ratón, pulsaciones de teclado o envíos de
@@ -170,10 +158,7 @@ menu.style.borderRadius = "8px";`}
             estos están anidados.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="Introducción a Canvas"
-            description="Dibujo programático en el navegador"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="04.07" title="Introducción a Canvas" description="Dibujo programático en el navegador" />
         <Paragraph>
             El elemento &lt;canvas&gt; forma parte del estándar HTML5 y proporciona
             una superficie de dibujo que puede ser controlada mediante JavaScript.
@@ -189,6 +174,8 @@ menu.style.borderRadius = "8px";`}
             definir colores, grosores de línea, sombras y transformaciones.
         </Paragraph>
         <CodeBlock
+            language="javascript"
+            filename="canvas-shapes.js"
             code={`const canvas = document.getElementById("lienzo");
 const ctx = canvas.getContext("2d");
 
@@ -212,13 +199,9 @@ ctx.beginPath();
 ctx.arc(200, 250, 60, 0, Math.PI * 2);
 ctx.fillStyle = "#e74c3c";
 ctx.fill();`}
-            language="javascript"
         />
 
-        <ArticleSectionTitle
-            title="Dibujo avanzado y estilos"
-            description="Colores, gradientes y texto"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="04.08" title="Dibujo avanzado y estilos" description="Colores, gradientes y texto" />
         <Paragraph>
             Canvas ofrece un control detallado sobre la apariencia de los dibujos.
             fillStyle y strokeStyle permiten definir colores de relleno y borde
@@ -235,10 +218,7 @@ ctx.fill();`}
             librerías externas.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="Animaciones en Canvas"
-            description="Movimiento y transformaciones"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="04.09" title="Animaciones en Canvas" description="Movimiento y transformaciones" />
         <Paragraph>
             Canvas no incluye un bucle de animación nativo, pero combinado con
             requestAnimationFrame permite crear animaciones fluidas y eficientes.
@@ -248,6 +228,8 @@ ctx.fill();`}
             monitor, optimizando el rendimiento y el consumo de recursos.
         </Paragraph>
         <CodeBlock
+            language="javascript"
+            filename="canvas-anim.js"
             code={`const canvas = document.getElementById("animacion");
 const ctx = canvas.getContext("2d");
 let x = 0;
@@ -272,7 +254,6 @@ function animar() {
 }
 
 animar();`}
-            language="javascript"
         />
         <Paragraph>
             Este mismo patrón es la base de videojuegos en 2D, simulaciones,
@@ -281,17 +262,12 @@ animar();`}
             interfaces híbridas donde los elementos HTML tradicionales interactúan
             con gráficos renderizados dinámicamente.
         </Paragraph>
-        <PostIt align="left" translateX={100} translateY={-45}>
-            <p class="text-sm font-medium">rAF pausa en segundo plano</p>
-            <p class="text-xs mt-1 opacity-80">
-                requestAnimationFrame detiene automáticamente la animación cuando
-                la pestaña no está visible. No malgasta recursos.
-            </p>
+
+        <PostIt number="N.06" title="rAF pausa en segundo plano" align="left">
+            <p>requestAnimationFrame detiene automáticamente la animación cuando la pestaña no está visible. No malgasta recursos.</p>
         </PostIt>
 
-        <ArticleSectionTitle
-            title="En Conclusión"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="04.10" title="En conclusión" />
         <Paragraph>
             La manipulación del DOM y el uso de Canvas representan dos pilares
             esenciales del desarrollo web interactivo. Mientras que el DOM permite
@@ -304,3 +280,12 @@ animar();`}
         </Paragraph>
     </Paper>
 </main>
+
+<style>
+    .cuaderno {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 40px 20px 80px;
+    }
+</style>
+

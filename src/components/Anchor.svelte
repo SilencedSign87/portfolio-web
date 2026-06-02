@@ -1,37 +1,55 @@
 <script lang="ts">
     import { push } from "svelte-spa-router";
+    import { twMerge } from "tailwind-merge";
     import {
         buttonStyles,
-        type buttonAppearance,
+        type ButtonVariants,
     } from "../styles/Button.styles";
-    import { twMerge } from "tailwind-merge";
+    import type { HTMLAnchorAttributes } from "svelte/elements";
 
-    export let href: string = "";
-    export let appearance: buttonAppearance = "default";
-    export let active: boolean = false;
-    export { className as class };
-    
-    let className: string = "";
-    let classes: string = "";
-    $: classes = twMerge(buttonStyles({ appearance, active }), className);
+    type $$Props = ButtonVariants & {
+        href?: string;
+        external?: boolean;
+        class?: string;
+        children?: import("svelte").Snippet;
+    } & Omit<HTMLAnchorAttributes, "class" | "children" | "href">;
+
+    let {
+        href = "",
+        external = false,
+        appearance = "ghost",
+        size = "md",
+        block = false,
+        active = false,
+        class: className = "",
+        children,
+        ...rest
+    }: $$Props = $props();
+
+    let classes = $derived(
+        twMerge(buttonStyles({ appearance, size, block, active }), className),
+    );
+
     function handleClick(event: MouseEvent) {
-        if (href) {
+        if (!external && href) {
             event.preventDefault();
             push(href);
         }
     }
 </script>
 
-<a
-    {href}
-    class={classes}
-    on:click={handleClick}
-    on:focus
-    on:blur
-    on:keydown
-    on:mouseenter
-    on:mouseleave
-    {...$$restProps}
->
-    <slot />
-</a>
+{#if external || !href}
+    <a
+        {href}
+        class={classes}
+        target={external ? "_blank" : undefined}
+        rel={external ? "noopener noreferrer" : undefined}
+        {...rest}
+    >
+        {@render children?.()}
+    </a>
+{:else}
+    <a {href} class={classes} onclick={handleClick} {...rest}>
+        {@render children?.()}
+    </a>
+{/if}

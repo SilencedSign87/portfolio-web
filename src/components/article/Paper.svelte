@@ -1,192 +1,184 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
+    import { onMount, type Snippet } from "svelte";
 
-    export let className = "";
+     type Props = {
+        sheet?: string;
+        revision?: string;
+        referenceWidth?: number;
+        class?: string;
+        date?: string;
+        title?: Snippet;
+        children?: Snippet;
+    };
+    let {
+        sheet = "01",
+        revision = "A",
+        referenceWidth = 800,
+        class: className = "",
+        date = new Date().toLocaleDateString(),
+        title,
+        children,
+    }: Props = $props();
 
-    let paper: HTMLDivElement;
+    let paper: HTMLElement | undefined = $state();
+    let width = $state(0);
+    let height = $state(0);
 
-    let width = 0;
-    let height = 0;
+    const computedScale = $derived.by(() => {
+        if (width <= 0) return null;
+        const ratio = Math.max(1, Math.round(height / width));
+        return `1:${ratio}`;
+    });
+
+    const displayScale = $derived(
+        computedScale ? computedScale : "—",
+    );
+
+    const displayDimensions = $derived(
+        width > 0 && height > 0
+            ? `${Math.round(width)} × ${Math.round(height)}`
+            : "—",
+    );
 
     onMount(() => {
-        const observer = new ResizeObserver(() => {
-            width = paper.offsetWidth;
-            height = paper.offsetHeight;
+        if (!paper) return;
+        const update = (w: number, h: number) => {
+            width = w;
+            height = h;
+        };
+        // Initial measure
+        const rect = paper.getBoundingClientRect();
+        update(rect.width, rect.height);
+        // Watch for resize
+        const observer = new ResizeObserver((entries) => {
+            for (const entry of entries) {
+                update(entry.contentRect.width, entry.contentRect.height);
+            }
         });
         observer.observe(paper);
         return () => observer.disconnect();
     });
-
-    $: showHeight = height > 300;
 </script>
 
-<div class="flex justify-center">
-
-    <!-- intrinsic wrapper -->
-    <div class="relative w-fit">
-
-        <!-- TOP MEASURE -->
-        <div
-            class="absolute -top-10 left-0 pointer-events-none"
-            style={`width:${width}px`}
-        >
-            <div class="relative h-4">
-
-                <!-- main line -->
-                <div
-                    class="
-                        absolute
-                        left-0
-                        right-0
-                        top-1/2
-                        h-px
-                        -translate-y-1/2
-                        bg-neutral-500
-                    "
-                ></div>
-
-                <!-- left cap -->
-                <div
-                    class="
-                        absolute
-                        left-0
-                        top-0
-                        w-px
-                        h-4
-                        bg-neutral-500
-                    "
-                ></div>
-
-                <!-- right cap -->
-                <div
-                    class="
-                        absolute
-                        right-0
-                        top-0
-                        w-px
-                        h-4
-                        bg-neutral-500
-                    "
-                ></div>
-
-                <!-- label -->
-                <div
-                    class="
-                        absolute
-                        left-1/2
-                        top-1/2
-                        -translate-x-1/2
-                        -translate-y-1/2
-                        px-2
-                        text-[11px]
-                        font-mono
-                        bg-neutral-100
-                        dark:bg-neutral-900
-                        text-neutral-400
-                    "
-                >
-                    {Math.round(width)} px
-                </div>
-            </div>
+<article bind:this={paper} class="paper {className}">
+    <header class="paper__titleblock">
+        <div class="paper__titleblock-cell">
+            <span class="paper__titleblock-label">Hoja</span>
+            <span class="paper__titleblock-value">{sheet}</span>
         </div>
-
-        <!-- LEFT MEASURE -->
-        {#if showHeight}
-            <div
-                class="absolute -left-10 top-0 pointer-events-none"
-                style={`height:${height}px`}
+        <div class="paper__titleblock-cell paper__titleblock-cell--wide">
+            <span class="paper__titleblock-label">Título</span>
+            <span
+                class="paper__titleblock-value paper__titleblock-value--title"
             >
-                <div class="relative h-full w-4">
-
-                    <!-- main line -->
-                    <div
-                        class="
-                            absolute
-                            top-0
-                            bottom-0
-                            left-1/2
-                            w-px
-                            -translate-x-1/2
-                            bg-neutral-500
-                        "
-                    ></div>
-
-                    <!-- top cap -->
-                    <div
-                        class="
-                            absolute
-                            top-0
-                            left-0
-                            h-px
-                            w-4
-                            bg-neutral-500
-                        "
-                    ></div>
-
-                    <!-- bottom cap -->
-                    <div
-                        class="
-                            absolute
-                            bottom-0
-                            left-0
-                            h-px
-                            w-4
-                            bg-neutral-500
-                        "
-                    ></div>
-
-                    <!-- label -->
-                    <div
-                        class="
-                            absolute
-                            left-1/2
-                            top-1/2
-                            -translate-x-1/2
-                            -translate-y-1/2
-                            -rotate-90
-                            px-2
-                            text-[11px]
-                            font-mono
-                            whitespace-nowrap
-                            bg-neutral-100
-                        dark:bg-neutral-900
-                            text-neutral-400
-                        "
-                    >
-                        {Math.round(height)} px
-                    </div>
-
-                </div>
-            </div>
-        {/if}
-
-        <!-- PAPER -->
-        <div
-            bind:this={paper}
-            class="
-                relative
-                w-[min(100vw-4rem,800px)]
-                font-serif
-
-                bg-white
-                dark:bg-neutral-850
-
-                border
-                border-neutral-200
-                dark:border-neutral-700
-
-                shadow-xl
-                shadow-black/20
-
-                px-8
-                py-10
-
-                {className}
-            "
-        >
-            <slot />
+                {#if title}{@render title()}{:else}Document{/if}
+            </span>
         </div>
+        <div class="paper__titleblock-cell">
+            <span class="paper__titleblock-label">Scala</span>
+            <span class="paper__titleblock-value">{displayScale}</span>
+        </div>
+        <div class="paper__titleblock-cell">
+            <span class="paper__titleblock-label">Revisión</span>
+            <span class="paper__titleblock-value">{revision}</span>
+        </div>
+        <div class="paper__titleblock-cell paper__titleblock-cell--wide">
+            <span class="paper__titleblock-label">Dimensiones</span>
+            <span
+                class="paper__titleblock-value paper__titleblock-value--title"
+            >
+                {displayDimensions}
+            </span>
+        </div>
+        <div class="paper__titleblock-cell">
+            <span class="paper__titleblock-label">Fecha</span>
+            <span class="paper__titleblock-value">{date}</span>
+        </div>
+    </header>
 
+    <div class="paper__body">
+        {@render children?.()}
     </div>
+</article>
 
-</div>
+<style>
+    .paper {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: var(--surface-container-lowest);
+        border: 1px solid var(--ink);
+        font-family: var(--font-mono);
+        color: var(--on-surface);
+    }
+
+    .paper__titleblock {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        border-bottom: 1px solid var(--ink);
+        background-color: var(--secondary-container);
+        font-family: var(--font-mono);
+    }
+
+    .paper__titleblock-cell {
+        padding: 10px 14px;
+        border-right: 1px solid var(--ink);
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+    }
+
+    .paper__titleblock-cell:last-child {
+        border-right: none;
+    }
+
+    .paper__titleblock-cell--wide {
+        grid-column: span 2;
+    }
+
+    .paper__titleblock-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--outline);
+    }
+
+    .paper__titleblock-value {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--on-surface);
+    }
+
+    .paper__titleblock-value--title {
+        font-family: var(--font-display);
+        font-size: 16px;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .paper__body {
+        padding: 40px 48px 56px;
+        background-image: radial-gradient(
+            circle at 1px 1px,
+            var(--outline-variant) 1px,
+            transparent 0
+        );
+        background-size: 20px 20px;
+        background-position: 0 0;
+    }
+
+    @media (max-width: 640px) {
+        .paper__titleblock {
+            grid-template-columns: 1fr 1fr;
+        }
+        .paper__titleblock-cell--wide {
+            grid-column: span 2;
+        }
+        .paper__body {
+            padding: 24px 20px 40px;
+        }
+    }
+</style>

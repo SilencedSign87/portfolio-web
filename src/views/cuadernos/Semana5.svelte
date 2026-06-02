@@ -10,26 +10,26 @@
     import ThemeImage from "@components/ThemeImage.svelte";
 </script>
 
-<main class="max-w-7xl m-auto mt-12 px-4 pb-12">
-    <Paper>
+<main class="cuaderno">
+    <Paper sheet="05" revision="A">
+        {#snippet title()}Frontend con React — Semana 05{/snippet}
+
         <ArticleHeader
+            number="05.00"
             title="Desarrollo Frontend con JavaScript"
-            description="El desarrollo frontend ha evolucionado de páginas estáticas a aplicaciones complejas impulsadas por JavaScript. Frameworks como React han transformado la forma en que se construyen interfaces, adoptando el Client-Side Rendering como modelo predominante para crear experiencias de usuario rápidas e interactivas."
+            description="El desarrollo frontend ha evolucionado de páginas estáticas a aplicaciones complejas impulsadas por JavaScript. Frameworks como React han transformado la forma en que se construyen interfaces, adoptando el Client-Side Rendering como modelo predominante."
         >
-            <div slot="before">
+            {#snippet before()}
                 <ThemeImage
                     lightSrc={blur1light}
                     darkSrc={blur1dark}
                     alt="Imagen de fondo"
-                    className="w-full h-64 object-cover rounded-lg"
+                    class="w-full h-64 object-cover"
                 />
-            </div>
+            {/snippet}
         </ArticleHeader>
 
-        <ArticleSectionTitle
-            title="Evolución del Frontend"
-            description="De páginas estáticas a aplicaciones dinámicas"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="05.01" title="Evolución del Frontend" description="De páginas estáticas a aplicaciones dinámicas" />
         <Paragraph>
             En sus inicios, la web se componía de páginas HTML estáticas. Cada
             interacción requería una recarga completa del servidor para obtener
@@ -48,10 +48,7 @@
             Applications.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="Client-Side Rendering"
-            description="Renderizado en el navegador"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="05.02" title="Client-Side Rendering" description="Renderizado en el navegador" />
         <Paragraph>
             El Client-Side Rendering (CSR) es un enfoque donde el navegador
             recibe un HTML mínimo con un script de JavaScript que se encarga de
@@ -75,10 +72,7 @@
             dispositivos con conexiones limitadas.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="React"
-            description="La librería de interfaces más popular"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="05.03" title="React" description="La librería de interfaces más popular" />
         <Paragraph>
             React es una librería desarrollada por Meta para construir
             interfaces de usuario basadas en componentes. Su enfoque declarativo
@@ -94,10 +88,7 @@
             peticiones HTTP según las necesidades del proyecto.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="Componentes y JSX"
-            description="Construyendo interfaces modulares"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="05.04" title="Componentes y JSX" description="Construyendo interfaces modulares" />
         <Paragraph>
             En React, todo es un componente. Un componente es una función o
             clase que recibe propiedades (props) y devuelve elementos React que
@@ -115,6 +106,8 @@
         </Paragraph>
 
         <CodeBlock
+            language="typescript"
+            filename="TarjetaProducto.tsx"
             code={`import { useState } from "react";
 
 function TarjetaProducto({ nombre, precio, imagen }) {
@@ -149,19 +142,13 @@ export default function App() {
         </div>
     );
 }`}
-            language="typescript"
         />
-        <PostIt align="right" translateX={220} translateY={-50}>
-            <p class="text-sm font-medium">JSX no es obligatorio</p>
-            <p class="text-xs mt-1 opacity-80">
-                Podés usar React sin JSX con React.createElement. Pero JSX hace
-                que el código se lea como la interfaz que representa.
-            </p>
+
+        <PostIt number="N.07" title="JSX no es obligatorio" align="right">
+            <p>Podés usar React sin JSX con React.createElement. Pero JSX hace que el código se lea como la interfaz que representa.</p>
         </PostIt>
-        <ArticleSectionTitle
-            title="Estado y Props"
-            description="Datos que fluyen en la aplicación"
-        ></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="05.05" title="Estado y Props" description="Datos que fluyen en la aplicación" />
         <Paragraph>
             Las props son datos que un componente padre pasa a un componente
             hijo. Son inmutables y permiten configurar y personalizar cada
@@ -178,10 +165,7 @@ export default function App() {
             aplicación y simplifica la depuración.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="El Virtual DOM"
-            description="Optimización del renderizado"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="05.06" title="El Virtual DOM" description="Optimización del renderizado" />
         <Paragraph>
             Una de las innovaciones clave de React es el Virtual DOM. En lugar
             de manipular el DOM del navegador directamente, React mantiene una
@@ -198,10 +182,7 @@ export default function App() {
             consistente.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="Hooks"
-            description="Funcionalidad en componentes funcionales"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="05.07" title="Hooks" description="Funcionalidad en componentes funcionales" />
         <Paragraph>
             Los hooks son funciones que permiten usar estado y otras
             características de React en componentes funcionales. El hook
@@ -218,10 +199,7 @@ export default function App() {
             componentes de clase, ofreciendo una API más simple y composable.
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="SPAs y Enrutamiento"
-            description="Navegación sin recarga"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="05.08" title="SPAs y Enrutamiento" description="Navegación sin recarga" />
         <Paragraph>
             Las Single Page Applications (SPAs) son aplicaciones que cargan una
             sola página HTML y actualizan dinámicamente el contenido según las
@@ -238,10 +216,7 @@ export default function App() {
             Server-Side Rendering (SSR) y Static Site Generation (SSG).
         </Paragraph>
 
-        <ArticleSectionTitle
-            title="CSR vs SSR vs SSG"
-            description="Estrategias de renderizado"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="05.09" title="CSR vs SSR vs SSG" description="Estrategias de renderizado" />
         <Paragraph>
             Cada estrategia de renderizado tiene sus ventajas. CSR ofrece una
             experiencia interactiva rápida después de la carga inicial, ideal
@@ -256,15 +231,12 @@ export default function App() {
             del ecosistema React. Esto ofrece lo mejor de ambos mundos:
             rendimiento, SEO e interactividad.
         </Paragraph>
-        <PostIt align="left" translateX={140} translateY={-45}>
-            <p class="text-sm font-medium">No hay estrategia correcta única</p>
-            <p class="text-xs mt-1 opacity-80">
-                CSR, SSR, SSG... cada proyecto necesita un enfoque distinto.
-                Conocerlos te permite elegir bien.
-            </p>
+
+        <PostIt number="N.08" title="No hay estrategia correcta única" align="left">
+            <p>CSR, SSR, SSG… cada proyecto necesita un enfoque distinto. Conocerlos te permite elegir bien.</p>
         </PostIt>
 
-        <ArticleSectionTitle title="En Conclusión"></ArticleSectionTitle>
+        <ArticleSectionTitle number="05.10" title="En conclusión" />
         <Paragraph>
             El desarrollo frontend con JavaScript ha madurado enormemente,
             pasando de simples scripts a aplicaciones complejas impulsadas por
@@ -278,3 +250,12 @@ export default function App() {
         </Paragraph>
     </Paper>
 </main>
+
+<style>
+    .cuaderno {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 40px 20px 80px;
+    }
+</style>
+

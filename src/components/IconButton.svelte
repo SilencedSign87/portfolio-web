@@ -1,41 +1,48 @@
 <script lang="ts">
-	import Button from "./Button.svelte";
-	import { twMerge } from "tailwind-merge";
-	import type { buttonAppearance } from "../styles/Button.styles";
+    import Button from "./Button.svelte";
+    import { twMerge } from "tailwind-merge";
+    import type { ButtonVariants } from "../styles/Button.styles";
 
-	export let appearance: buttonAppearance = "default";
-	export let active: boolean = false;
+    type $$Props = ButtonVariants & {
+        class?: string;
+        icon?: import("svelte").Snippet;
+        text?: import("svelte").Snippet;
+    };
 
-	let className = "";
-	export { className as class };
+    let {
+        appearance = "outline",
+        size = "md",
+        block = false,
+        active = false,
+        class: className = "",
+        icon,
+        text,
+        ...rest
+    }: $$Props = $props();
 
-	$: hasTextSlot = $$slots.text;
+    let classes = $derived(
+        twMerge(
+            hasText(text) || hasIcon(icon) ? "inline-flex" : "aspect-square",
+            className,
+        ),
+    );
 
-	const baseClasses = "grid items-center";
-	let classes = "";
-	$: classes = twMerge(
-		baseClasses,
-		hasTextSlot
-			? "grid-cols-[auto_1fr] gap-2"
-			: "aspect-square justify-center",
-		className,
-	);
+    function hasText(snippet: unknown): boolean {
+        return typeof snippet === "function";
+    }
+    function hasIcon(snippet: unknown): boolean {
+        return typeof snippet === "function";
+    }
 </script>
 
 <Button
-	{appearance}
-	{active}
-	class={classes}
-	on:click
-	on:focus
-	on:blur
-	on:keydown
-	on:mouseenter
-	on:mouseleave
-	{...$$restProps}
+    {appearance}
+    {size}
+    {block}
+    {active}
+    class={classes}
+    {...rest}
 >
-	<slot name="icon" />
-	<div class="flex items-center justify-start">
-		<slot name="text" />
-	</div>
+    {#if icon}{@render icon()}{/if}
+    {#if text}{@render text()}{/if}
 </Button>

@@ -9,18 +9,25 @@
     import ThemeImage from "@components/ThemeImage.svelte";
 </script>
 
-<main class="max-w-7xl m-auto mt-12 px-4 pb-12">
-    <Paper>
-        <ArticleHeader title="Estándar Open Web Platform">
-            <div slot="before">
+<main class="cuaderno">
+    <Paper sheet="02" revision="A">
+        {#snippet title()}Open Web Platform — Semana 02{/snippet}
+
+        <ArticleHeader
+            number="02.00"
+            title="Estándar Open Web Platform"
+            description="La Open Web Platform es el conjunto de estándares, tecnologías y protocolos abiertos que permiten el funcionamiento de la World Wide Web. Su principal objetivo es garantizar que los sitios y aplicaciones web sean accesibles, compatibles e interoperables entre diferentes navegadores y dispositivos."
+        >
+            {#snippet before()}
                 <ThemeImage
                     lightSrc={blur1light}
                     darkSrc={blur1dark}
                     alt="Imagen de fondo"
-                    className="w-full h-64 object-cover rounded-lg"
+                    class="w-full h-64 object-cover"
                 />
-            </div>
+            {/snippet}
         </ArticleHeader>
+
         <Paragraph>
             La Open Web Platform es el conjunto de estándares, tecnologías y
             protocolos abiertos que permiten el funcionamiento de la World Wide
@@ -36,10 +43,8 @@
             las cuales definen reglas y estándares para mantener la estabilidad
             y evolución de la web moderna.
         </Paragraph>
-        <ArticleSectionTitle
-            title="HTML"
-            description="la estructura del contenido"
-        ></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="02.01" title="HTML" description="La estructura del contenido" />
         <Paragraph>
             Uno de los pilares fundamentales de la Open Web Platform es HTML
             (HyperText Markup Language). Este lenguaje define la estructura y
@@ -60,8 +65,8 @@
             contenidos puedan ser interpretados correctamente tanto por usuarios
             como por sistemas automatizados.
         </Paragraph>
-        <ArticleSectionTitle title="CSS" description="Presentación visual"
-        ></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="02.02" title="CSS" description="Presentación visual" />
         <Paragraph>
             CSS (Cascading Style Sheets) es el estándar encargado del diseño y
             la presentación visual de las páginas web. Gracias a CSS es posible
@@ -78,8 +83,8 @@
             contribuye a crear aplicaciones más ligeras, rápidas y compatibles
             entre navegadores.
         </Paragraph>
-        <ArticleSectionTitle title="JavaScript" description="Interactividad"
-        ></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="02.03" title="JavaScript" description="Interactividad" />
         <Paragraph>
             JavaScript es el lenguaje de programación principal de la web. Su
             función es añadir dinamismo e interactividad a los sitios y
@@ -87,26 +92,19 @@
             acciones del usuario, actualizar contenido en tiempo real y
             comunicarse con servidores sin recargar completamente el sitio.
         </Paragraph>
-        <Paragraph>
-            La Open Web Platform integra numerosas APIs que trabajan junto con
-            JavaScript. Algunas de las más importantes son:
-        </Paragraph>
-        <ul class="list-disc ml-8">
+        <Paragraph>La Open Web Platform integra numerosas APIs que trabajan junto con JavaScript. Algunas de las más importantes son:</Paragraph>
+        <ul class="cuaderno__list">
             <li>API de Geolocalización</li>
             <li>API de Almacenamiento Local</li>
             <li>API de Notificaciones</li>
-            <li>API Canvas WebSockets WebRTC</li>
+            <li>API Canvas, WebSockets, WebRTC</li>
         </ul>
 
-        <PostIt align="right" translateX={220} translateY={-100}>
-            <p class="text-sm font-medium">Las APIs web piden permiso</p>
-            <p class="text-xs mt-1 opacity-80">
-                Geolocalización, notificaciones y cámara siempre requieren
-                consentimiento del usuario por seguridad.
-            </p>
+        <PostIt number="N.02" title="Las APIs web piden permiso" align="right" variant="warning">
+            <p>Geolocalización, notificaciones y cámara siempre requieren consentimiento del usuario por seguridad.</p>
         </PostIt>
-        <ArticleSectionTitle title="Protocolos y comunicación en la web"
-        ></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="02.04" title="Protocolos y comunicación en la web" />
         <Paragraph>
             La interoperabilidad de la Open Web Platform depende de protocolos
             de comunicación estandarizados. El más importante es HTTP (HyperText
@@ -119,15 +117,13 @@
             mediante certificados digitales. Esto garantiza la privacidad y
             protección de los datos transmitidos.
         </Paragraph>
-        <PostIt align="left" translateX={200} translateY={20}>
-            <p class="text-sm font-medium">HTTPS no es opcional hoy</p>
-            <p class="text-xs mt-1 opacity-80">
-                Cifrar la comunicación con HTTPS ya es un requisito mínimo
-                para cualquier sitio profesional.
-            </p>
+
+        <PostIt number="N.03" title="HTTPS no es opcional hoy" align="left" variant="warning">
+            <p>Cifrar la comunicación con HTTPS ya es un requisito mínimo para cualquier sitio profesional.</p>
         </PostIt>
+
         <Paragraph>Otros protocolos y formatos importantes incluyen:</Paragraph>
-        <ul class="list-disc ml-8">
+        <ul class="cuaderno__list">
             <li>URI y URL para la identificación de recursos</li>
             <li>JSON y XML para intercambio de datos</li>
             <li>WebSocket para comunicación en tiempo real</li>
@@ -137,8 +133,8 @@
             Gracias a estos estándares, diferentes sistemas y plataformas pueden
             comunicarse de manera uniforme.
         </Paragraph>
-        <ArticleSectionTitle title="Compatibilidad y estándares abiertos"
-        ></ArticleSectionTitle>
+
+        <ArticleSectionTitle number="02.05" title="Compatibilidad y estándares abiertos" />
         <Paragraph>
             Uno de los principios esenciales de la Open Web Platform es la
             compatibilidad universal. Los estándares abiertos permiten que una
@@ -157,8 +153,7 @@
             desarrolladores y mejora la experiencia de los usuarios finales.
         </Paragraph>
 
-        <ArticleSectionTitle title="Importancia de la Open Web Platform"
-        ></ArticleSectionTitle>
+        <ArticleSectionTitle number="02.06" title="Importancia de la Open Web Platform" />
         <Paragraph>
             La Open Web Platform representa uno de los mayores avances
             tecnológicos en términos de acceso global a la información. Su
@@ -175,3 +170,36 @@
         </Paragraph>
     </Paper>
 </main>
+
+<style>
+    .cuaderno {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 40px 20px 80px;
+    }
+
+    .cuaderno__list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 24px;
+        font-family: var(--font-mono);
+    }
+
+    .cuaderno__list li {
+        position: relative;
+        padding: 6px 0 6px 24px;
+        border-bottom: 1px dotted var(--outline-variant);
+        font-size: 14px;
+        color: var(--on-surface);
+    }
+
+    .cuaderno__list li::before {
+        content: "+";
+        position: absolute;
+        left: 0;
+        top: 6px;
+        color: var(--ink);
+        font-weight: 700;
+    }
+</style>
+
