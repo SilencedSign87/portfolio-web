@@ -9,6 +9,7 @@
 
     type ProjectMeta = {
         slug: string;
+        href?: string;
         title: string;
         description: string;
         image: string;
@@ -19,6 +20,7 @@
     const projectsMeta: ProjectMeta[] = [
         {
             slug: "biblioteca-fis",
+            href: "https://github.com/SilencedSign87/biblioteca-especializada-fis",
             title: "Biblioteca especializada FIS",
             description: "Sistema de gestión para biblioteca universitaria",
             image: "/images/proyecto1.png",
@@ -28,6 +30,7 @@
         {
             slug: "music-wrap",
             title: "MusicWrap",
+            href: "https://github.com/SilencedSign87/MusicWrap",
             description: "Administrador de librería musical",
             image: musicwrap,
             tags: ["c#", "wpf", "windows"],
@@ -35,6 +38,7 @@
         },
         {
             slug: "portfolio",
+            href: "https://github.com/SilencedSign87/portfolio-web",
             title: "Portfolio",
             description:
                 "Sitio web personal para mostrar proyectos y habilidades",
@@ -45,7 +49,7 @@
     ];
 </script>
 
-<main class="max-w-screen-xl mx-auto px-5 pt-10 pb-20">
+<main class="max-w-7xl mx-auto px-5 pt-10 pb-20">
     <ContentHeader
         numeration="§ 03"
         subtitle="Proyectos"
@@ -58,7 +62,7 @@
     >
         {#each projectsMeta as project (project.slug)}
             <li class="min-w-0">
-                <ContentCard href={`/proyectos/${project.slug}`}>
+                <ContentCard href={project.href || `/proyectos/${project.slug}`}  external={!!project.href}>
                     <ContentCardHero>
                         <img
                             src={project.image}

@@ -1,7 +1,8 @@
 <script lang="ts">
     import { ArrowRight } from "@lucide/svelte/icons";
     import Anchor from "@components/Anchor.svelte";
-    import human from "@assets/human.jpg";
+    import human from "@assets/photo.png";
+
     import GithubIcon from "@/components/icons/GithubIcon.svelte";
     import SketchFrame from "../components/SketchFrame.svelte";
     import IndexSheet from "../components/IndexSheet.svelte";
