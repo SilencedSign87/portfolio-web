@@ -3,11 +3,14 @@
         ChevronLeft,
         ChevronRight,
         House,
-        ArrowUpRight,
     } from "@lucide/svelte/icons";
     import Anchor from "../../components/Anchor.svelte";
-    import Button from "../../components/Button.svelte";
     import { router } from "svelte-spa-router";
+    import ContentHeader from "../../components/ContentHeader.svelte";
+    import ContentCard from "../../components/ContentCard.svelte";
+    import ContentCardTag from "../../components/ContentCardTag.svelte";
+    import ContentCardBody from "../../components/ContentCardBody.svelte";
+    import ContentCardFoot from "../../components/ContentCardFoot.svelte";
 
     import Semana1 from "./Semana1.svelte";
     import Semana2 from "./Semana2.svelte";
@@ -210,75 +213,22 @@
         </div>
     {/if}
 {:else}
-    <main class="cuadernos__index">
-        <header class="cuadernos__intro">
-            <div class="cuadernos__intro-meta">
-                <span>§ 02</span>
-                <span class="cuadernos__intro-dot">·</span>
-                <span>Cuadernos de estudio</span>
-            </div>
-            <h1 class="cuadernos__intro-title">
-                Apuntes trazados<br />
-                en papel rayado.
-            </h1>
-            <p class="cuadernos__intro-lead">
-                Siete semanas de cursada frontend. Cada lámina resume una
-                unidad: teoría, ejemplos y, a veces, una nota al margen.
-            </p>
-        </header>
+    <main class="max-w-screen-xl mx-auto px-5 pt-10 pb-20">
+        <ContentHeader
+            numeration="§ 02"
+            subtitle="Cuadernos de estudio"
+            title="Apuntes trazados<br />en papel rayado."
+            description="Siete semanas de cursada frontend. Cada lámina resume una unidad: teoría, ejemplos y, a veces, una nota al margen."
+        />
 
-        <ol class="cuadernos__grid">
+        <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 list-none m-0 p-0">
             {#each semanaMeta as s (s.slug)}
-                <li class="cuadernos__item">
-                    <span class="cuadernos__card-anchor">
-                        <Anchor
-                            href={`/cuadernos/${s.slug}`}
-                            external={false}
-                            appearance="ghost"
-                            class="cuadernos__card"
-                        >
-                            <header class="cuadernos__card-head">
-                                <span class="cuadernos__card-num">
-                                    <span class="cuadernos__card-num-prefix"
-                                        >№</span
-                                    >
-                                    {s.number}
-                                </span>
-                                <span class="cuadernos__card-date"
-                                    >{s.date}</span
-                                >
-                            </header>
-
-                            <div class="cuadernos__card-body">
-                                <h2 class="cuadernos__card-title">{s.title}</h2>
-                                <p class="cuadernos__card-topic">{s.topic}</p>
-                            </div>
-
-                            <footer class="cuadernos__card-foot">
-                                <ul class="cuadernos__card-tags">
-                                    {#each s.tags as tag (tag)}
-                                        <li class="cuadernos__card-tag">
-                                            <span
-                                                class="cuadernos__card-tag-mark"
-                                                >+</span
-                                            >
-                                            {tag}
-                                        </li>
-                                    {/each}
-                                </ul>
-                                <span class="cuadernos__card-sheets">
-                                    {s.sheets} §§
-                                </span>
-                            </footer>
-
-                            <div
-                                class="cuadernos__card-corner cuadernos__card-corner--tr"
-                                aria-hidden="true"
-                            >
-                                <ArrowUpRight size={14} />
-                            </div>
-                        </Anchor>
-                    </span>
+                <li class="min-w-0">
+                    <ContentCard href={`/cuadernos/${s.slug}`}>
+                        <ContentCardTag number={s.number} date={s.date} />
+                        <ContentCardBody title={s.title} topic={s.topic} />
+                        <ContentCardFoot tags={s.tags} sheets={s.sheets} />
+                    </ContentCard>
                 </li>
             {/each}
         </ol>
@@ -366,219 +316,6 @@
         .cuadernos__nav-home-text {
             display: inline;
         }
-    }
-
-    /* INDEX */
-    .cuadernos__index {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 40px 20px 80px;
-    }
-
-    .cuadernos__intro {
-        margin-bottom: 56px;
-        max-width: 60ch;
-    }
-
-    .cuadernos__intro-meta {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-family: var(--font-mono);
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--outline);
-        margin-bottom: 20px;
-    }
-
-    .cuadernos__intro-dot {
-        opacity: 0.4;
-    }
-
-    .cuadernos__intro-title {
-        font-family: var(--font-display);
-        font-size: clamp(36px, 6vw, 56px);
-        line-height: 1.05;
-        letter-spacing: -0.03em;
-        font-weight: 700;
-        color: var(--ink);
-        margin: 0 0 24px;
-    }
-
-    .cuadernos__intro-lead {
-        font-family: var(--font-mono);
-        font-size: 15px;
-        line-height: 1.7;
-        color: var(--on-surface-variant);
-        margin: 0;
-    }
-
-    .cuadernos__grid {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    @media (min-width: 640px) {
-        .cuadernos__grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (min-width: 1024px) {
-        .cuadernos__grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    .cuadernos__item {
-        min-width: 0;
-    }
-
-    .cuadernos__card-anchor :global(.cuadernos__card) {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        background: var(--surface-container-lowest);
-        border: 1px solid var(--ink);
-        text-decoration: none;
-        color: var(--on-surface);
-        transition:
-            transform 150ms ease,
-            box-shadow 150ms ease;
-    }
-
-    .cuadernos__card-anchor :global(.cuadernos__card:hover) {
-        transform: translate(-2px, -2px);
-        box-shadow: 4px 4px 0 0 var(--ink);
-    }
-
-    .cuadernos__card-head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 14px;
-        background: var(--secondary-container);
-        border-bottom: 1px solid var(--outline-variant);
-        font-family: var(--font-mono);
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-    }
-
-    .cuadernos__card-num {
-        display: inline-flex;
-        align-items: baseline;
-        gap: 4px;
-        color: var(--ink);
-        font-weight: 700;
-        margin-right: 8px;
-    }
-
-    .cuadernos__card-num-prefix {
-        opacity: 0.5;
-    }
-
-    .cuadernos__card-date {
-        color: var(--on-secondary-container);
-        opacity: 0.7;
-    }
-
-    .cuadernos__card-body {
-        max-width: 100%;
-        padding: 20px 16px 16px;
-        flex: 1;
-        border-bottom: 1px solid var(--outline-variant);
-        overflow: hidden;
-        display: grid;
-        gap: 2px;
-    }
-
-    .cuadernos__card-title {
-        font-family: var(--font-display);
-        font-size: 22px;
-        line-height: 1.15;
-        letter-spacing: -0.02em;
-        font-weight: 700;
-        color: var(--ink);
-        margin: 0 0 8px;
-        text-align: center;
-        text-overflow: ellipsis;
-        text-wrap: balance;
-    }
-
-    .cuadernos__card-topic {
-        font-family: var(--font-mono);
-        font-size: 13px;
-        line-height: 1.5;
-        color: var(--on-surface-variant);
-        margin: 0;
-        text-align: center;
-        text-wrap: balance;
-    }
-
-    .cuadernos__card-foot {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 16px;
-        gap: 12px;
-    }
-
-    .cuadernos__card-tags {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-    }
-
-    .cuadernos__card-tag {
-        font-family: var(--font-mono);
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        color: var(--ink);
-        display: inline-flex;
-        align-items: center;
-        gap: 3px;
-    }
-
-    .cuadernos__card-tag-mark {
-        color: var(--ink);
-    }
-
-    .cuadernos__card-sheets {
-        font-family: var(--font-mono);
-        font-size: 11px;
-        color: var(--outline);
-        white-space: nowrap;
-    }
-
-    .cuadernos__card-corner {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 28px;
-        height: 28px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--ink);
-        color: var(--color-on-ink, #fff);
-        opacity: 0;
-        transition: opacity 100ms ease;
-    }
-
-    .cuadernos__card-anchor
-        :global(.cuadernos__card:hover .cuadernos__card-corner) {
-        opacity: 1;
     }
 
     .cuadernos__notfound {
