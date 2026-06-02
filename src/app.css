@@ -138,6 +138,56 @@
   letter-spacing: 0.05em;
 }
 
+/* highlight.js — Blueprint Light theme */
+.code-content {
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.55;
+  tab-size: 2;
+}
+
+.code-content .hljs-comment,
+.code-content .hljs-quote {
+  color: var(--color-outline);
+  font-style: italic;
+}
+
+.code-content .hljs-keyword,
+.code-content .hljs-selector-tag,
+.code-content .hljs-literal,
+.code-content .hljs-symbol,
+.code-content .hljs-name {
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+.code-content .hljs-string,
+.code-content .hljs-doctag,
+.code-content .hljs-title.class_,
+.code-content .hljs-section {
+  color: var(--color-annotation);
+}
+
+.code-content .hljs-number,
+.code-content .hljs-variable {
+  color: var(--color-ink-soft);
+}
+
+.code-content .hljs-type,
+.code-content .hljs-built_in,
+.code-content .hljs-attr {
+  color: #464170;
+}
+
+.code-content .hljs-punctuation {
+  color: var(--color-on-surface);
+}
+
+.code-content .hljs-tag {
+  color: var(--color-ink);
+}
+
 :root {
   --surface: #fcf8ff;
   --surface-container-lowest: #ffffff;

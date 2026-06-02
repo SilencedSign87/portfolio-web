@@ -1,8 +1,6 @@
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import tailwindcss from '@tailwindcss/vite'
-import monacoEditorPluginPkg from 'vite-plugin-monaco-editor';
-const monacoEditorPlugin = (monacoEditorPluginPkg as any).default ?? monacoEditorPluginPkg
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -13,9 +11,6 @@ export default defineConfig({
   plugins: [
     svelte(),
     tailwindcss(),
-    monacoEditorPlugin({
-      languageWorkers: ['editorWorkerService', 'typescript', 'json']
-    })
   ],
   resolve: {
     alias: {
