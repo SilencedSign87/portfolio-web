@@ -11,6 +11,7 @@
     const navItems = [
         { label: "Index", href: "/", match: "/" },
         { label: "Cuadernos", href: "/cuadernos", match: "/cuadernos" },
+        { label: "Proyectos", href: "/proyectos", match: "/proyectos" },
     ];
 
     function isActive(match: string) {
