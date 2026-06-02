@@ -370,11 +370,11 @@
         font-weight: 700;
     }
 
-    .home__stat-value--inline {
+    /* .home__stat-value--inline {
         display: inline-flex;
         align-items: center;
         gap: 4px;
-    }
+    } */
 
     /* SKETCH */
     .home__sketch {

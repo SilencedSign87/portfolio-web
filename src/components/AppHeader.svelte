@@ -3,8 +3,8 @@
     import { Menu, X } from "@lucide/svelte/icons";
     import Anchor from "./Anchor.svelte";
     import Button from "./Button.svelte";
-    import GithubIcon from "./BrandIcons.svelte";
     import { CurrentPageURL } from "@/data/info";
+    import GithubIcon from "./icons/GithubIcon.svelte";
 
     let isOpen = $state(false);
 
