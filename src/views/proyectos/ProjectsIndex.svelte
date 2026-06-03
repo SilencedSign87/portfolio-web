@@ -1,6 +1,7 @@
 <script lang="ts">
     import musicwrap from "@/assets/proyectos/musicwrap.png";
     import portfolio from "@/assets/proyectos/portfolio.png";
+    import biblioteca from "@/assets/proyectos/biblioteca.png";
     import ContentCard from "@/components/ContentCard.svelte";
     import ContentCardBody from "@/components/ContentCardBody.svelte";
     import ContentCardFoot from "@/components/ContentCardFoot.svelte";
@@ -23,7 +24,7 @@
             href: "https://github.com/SilencedSign87/biblioteca-especializada-fis",
             title: "Biblioteca especializada FIS",
             description: "Sistema de gestión para biblioteca universitaria",
-            image: "/images/proyecto1.png",
+            image: biblioteca,
             tags: ["laravel", "php", "react", "mysql", "web"],
             date: "2025-08",
         },
@@ -67,7 +68,7 @@
                         <img
                             src={project.image}
                             alt={`Imagen del proyecto ${project.title}`}
-                            class="w-full h-48 object-cover rounded-t"
+                            class="w-full h-48 object-cover"
                         />
                     </ContentCardHero>
                     <ContentCardBody
