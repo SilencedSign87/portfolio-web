@@ -19,6 +19,8 @@
     import Semana5 from "./Semana5.svelte";
     import Semana6 from "./semana6.svelte";
     import Semana7 from "./Semana7.svelte";
+    import Semana8 from "./Semama8.svelte";
+    import Semana9 from "./Semana9.svelte";
 
     type CuadernoMeta = {
         slug: string;
@@ -37,7 +39,7 @@
             title: "Fundamentos web",
             topic: "HTML · CSS · JavaScript",
             tags: ["html", "css", "js"],
-            date: "2024-03",
+            date: "2026-04",
             sheets: 7,
         },
         {
@@ -46,7 +48,7 @@
             title: "Open Web Platform",
             topic: "Estándares, APIs, protocolos",
             tags: ["estándares", "apis"],
-            date: "2024-03",
+            date: "2026-04",
             sheets: 6,
         },
         {
@@ -55,7 +57,7 @@
             title: "Librerías frontend",
             topic: "Bootstrap · Tailwind",
             tags: ["bootstrap", "tailwind"],
-            date: "2024-04",
+            date: "2026-04",
             sheets: 5,
         },
         {
@@ -64,7 +66,7 @@
             title: "DOM y Canvas",
             topic: "Manipulación, dibujo 2D, animaciones",
             tags: ["dom", "canvas"],
-            date: "2024-04",
+            date: "2026-04",
             sheets: 9,
         },
         {
@@ -73,7 +75,7 @@
             title: "Frontend con React",
             topic: "Componentes, props, hooks, virtual DOM",
             tags: ["react", "spa"],
-            date: "2024-05",
+            date: "2026-05",
             sheets: 10,
         },
         {
@@ -82,7 +84,7 @@
             title: "Eventos y bucles",
             topic: "Renderizado condicional, formularios, routing",
             tags: ["react", "forms"],
-            date: "2024-05",
+            date: "2026-05",
             sheets: 6,
         },
         {
@@ -91,9 +93,27 @@
             title: "Hooks en profundidad",
             topic: "useState, useEffect, useRef, useReducer…",
             tags: ["hooks", "react"],
-            date: "2024-06",
+            date: "2026-05",
             sheets: 9,
         },
+        {
+            slug: "semana-8",
+            number: "08",
+            title: "Consolidado",
+            topic: "Notas y apuntes de repaso",
+            tags: ["repaso", "notas"],
+            date: "2026-05",
+            sheets: 1,
+        },
+        {
+            slug: "semana-9",
+            number: "09",
+            title: "Tecnologías Web Backend",
+            topic: "Arquitectura de aplicaciones web y servidores web",
+            tags: ["php", "Java", "JSP"],
+            date: "2026-05",
+            sheets: 8,
+        }
     ];
 
     const components: Record<string, any> = {
@@ -104,6 +124,8 @@
         "semana-5": Semana5,
         "semana-6": Semana6,
         "semana-7": Semana7,
+        "semana-8": Semana8,
+        "semana-9": Semana9,
     };
 
     let isDetail = $derived(router.location !== "/cuadernos");

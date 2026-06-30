@@ -156,11 +156,3 @@ fetch("https://api.example.com/datos")
     </Paper>
 </main>
 
-<style>
-    .cuaderno {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 40px 20px 80px;
-    }
-</style>
-

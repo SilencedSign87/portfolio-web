@@ -138,6 +138,12 @@
   letter-spacing: 0.05em;
 }
 
+.cuaderno {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
 /* highlight.js — Blueprint Light theme */
 .code-content {
   background: transparent;
@@ -279,7 +285,12 @@ body {
   background-color: var(--outline);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   letter-spacing: -0.02em;
   font-weight: 700;
