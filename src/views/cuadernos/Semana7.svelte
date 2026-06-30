@@ -24,7 +24,7 @@
                     lightSrc={blur1light}
                     darkSrc={blur1dark}
                     alt="Imagen de fondo"
-                    class="w-full h-64 object-cover"
+                    class="cuaderno-hero"
                 />
             {/snippet}
         </ArticleHeader>
@@ -344,11 +344,4 @@ function Perfil() {
     </Paper>
 </main>
 
-<style>
-    .cuaderno {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 40px 20px 80px;
-    }
-</style>
 

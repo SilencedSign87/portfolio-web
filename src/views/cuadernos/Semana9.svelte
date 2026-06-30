@@ -20,7 +20,7 @@
                     lightSrc={blur1light}
                     darkSrc={blur1dark}
                     alt="Imagen de fondo"
-                    class="w-full h-64 object-cover"
+                    class="cuaderno-hero"
                 />
             {/snippet}
         </ArticleHeader>

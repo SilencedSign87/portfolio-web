@@ -23,7 +23,7 @@
                     lightSrc={blur1light}
                     darkSrc={blur1dark}
                     alt="Imagen de fondo"
-                    class="w-full h-64 object-cover"
+                    class="cuaderno-hero"
                 />
             {/snippet}
         </ArticleHeader>
@@ -171,35 +171,4 @@
     </Paper>
 </main>
 
-<style>
-    .cuaderno {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 40px 20px 80px;
-    }
-
-    .cuaderno__list {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 24px;
-        font-family: var(--font-mono);
-    }
-
-    .cuaderno__list li {
-        position: relative;
-        padding: 6px 0 6px 24px;
-        border-bottom: 1px dotted var(--outline-variant);
-        font-size: 14px;
-        color: var(--on-surface);
-    }
-
-    .cuaderno__list li::before {
-        content: "+";
-        position: absolute;
-        left: 0;
-        top: 6px;
-        color: var(--ink);
-        font-weight: 700;
-    }
-</style>
 

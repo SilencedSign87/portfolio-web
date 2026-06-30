@@ -24,7 +24,7 @@
                     lightSrc={blur1light}
                     darkSrc={blur1dark}
                     alt="Imagen de fondo"
-                    class="w-full h-64 object-cover"
+                    class="cuaderno-hero"
                 />
             {/snippet}
         </ArticleHeader>
@@ -253,12 +253,6 @@ function FormularioContacto() {
 </main>
 
 <style>
-    .cuaderno {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 40px 20px 80px;
-    }
-
     .cuaderno :global(code) {
         font-family: var(--font-mono);
         font-size: 12px;
