@@ -22,6 +22,7 @@
     import Semana8 from "./Semama8.svelte";
     import Semana9 from "./Semana9.svelte";
     import Semana10 from "./Semana10.svelte";
+    import Semana11 from "./Semana11.svelte";
 
     type CuadernoMeta = {
         slug: string;
@@ -123,6 +124,15 @@
             tags: ["python", "poo"],
             date: "2026-07",
             sheets: 13,
+        },
+        {
+            slug: "semana-11",
+            number: "11",
+            title: "Introducción a Django",
+            topic: "MTV, modelos, vistas, plantillas y ORM",
+            tags: ["django", "python", "backend"],
+            date: "2026-07",
+            sheets: 13,
         }
     ];
 
@@ -137,6 +147,7 @@
         "semana-8": Semana8,
         "semana-9": Semana9,
         "semana-10": Semana10,
+        "semana-11": Semana11,
     };
 
     let isDetail = $derived(router.location !== "/cuadernos");
