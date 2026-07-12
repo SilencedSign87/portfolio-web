@@ -23,6 +23,7 @@
     import Semana9 from "./Semana9.svelte";
     import Semana10 from "./Semana10.svelte";
     import Semana11 from "./Semana11.svelte";
+    import Semana12 from "./Semana12.svelte";
 
     type CuadernoMeta = {
         slug: string;
@@ -133,6 +134,15 @@
             tags: ["django", "python", "backend"],
             date: "2026-07",
             sheets: 13,
+        },
+        {
+            slug: "semana-12",
+            number: "12",
+            title: "Formularios, Admin, Middleware y Sesiones",
+            topic: "Formularios, validación, admin, middleware, sesiones y autenticación",
+            tags: ["django", "forms", "admin", "auth"],
+            date: "2026-07",
+            sheets: 11,
         }
     ];
 
@@ -148,6 +158,7 @@
         "semana-9": Semana9,
         "semana-10": Semana10,
         "semana-11": Semana11,
+        "semana-12": Semana12,
     };
 
     let isDetail = $derived(router.location !== "/cuadernos");
