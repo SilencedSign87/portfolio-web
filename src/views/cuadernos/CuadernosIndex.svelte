@@ -25,6 +25,7 @@
     import Semana11 from "./Semana11.svelte";
     import Semana12 from "./Semana12.svelte";
     import Semana13 from "./Semana13.svelte";
+    import Semana14 from "./Semana14.svelte";
 
     type CuadernoMeta = {
         slug: string;
@@ -153,6 +154,15 @@
             tags: ["django", "drf", "api", "rest"],
             date: "2026-07",
             sheets: 12,
+        },
+        {
+            slug: "semana-14",
+            number: "14",
+            title: "Microservicios en Django",
+            topic: "Docker, Kubernetes, comunicación, monitoreo y escalado",
+            tags: ["django", "microservicios", "docker", "kubernetes"],
+            date: "2026-07",
+            sheets: 11,
         }
     ];
 
@@ -170,6 +180,7 @@
         "semana-11": Semana11,
         "semana-12": Semana12,
         "semana-13": Semana13,
+        "semana-14": Semana14,
     };
 
     let isDetail = $derived(router.location !== "/cuadernos");
