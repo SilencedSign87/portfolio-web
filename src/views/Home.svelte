@@ -41,7 +41,7 @@
 <main class="max-w-screen-xl mx-auto px-5 pt-10 pb-20">
     <!-- HERO / PORTADA -->
     <section class="relative py-5 pb-[60px]">
-        <div class="grid grid-cols-1 gap-12 items-start lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+        <div class="grid grid-cols-1 gap-12 items-start lg:grid-cols-[3fr_1fr] lg:gap-16">
             <!-- Columna izquierda: Titleblock -->
             <div class="relative px-4 py-2">
                 <div class="absolute top-0 left-0 w-4 h-4 text-ink" aria-hidden="true">
@@ -97,12 +97,14 @@
             </div>
 
             <!-- Columna derecha: Boceto / Croquis -->
+            
             <SketchFrame
                 src={human}
-                alt="Pintura digital de flores"
-                width={320}
-                height={320}
+                alt="Foto de perfil"
+                width={150}
+                height={150}
             />
+            
         </div>
     </section>
 

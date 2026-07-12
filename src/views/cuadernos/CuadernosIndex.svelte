@@ -21,6 +21,7 @@
     import Semana7 from "./Semana7.svelte";
     import Semana8 from "./Semama8.svelte";
     import Semana9 from "./Semana9.svelte";
+    import Semana10 from "./Semana10.svelte";
 
     type CuadernoMeta = {
         slug: string;
@@ -113,6 +114,15 @@
             tags: ["php", "Java", "JSP"],
             date: "2026-05",
             sheets: 8,
+        },
+        {
+            slug: "semana-10",
+            number: "10",
+            title: "Introducción a Python",
+            topic: "Sintaxis, POO, módulos y excepciones",
+            tags: ["python", "poo"],
+            date: "2026-07",
+            sheets: 13,
         }
     ];
 
@@ -126,6 +136,7 @@
         "semana-7": Semana7,
         "semana-8": Semana8,
         "semana-9": Semana9,
+        "semana-10": Semana10,
     };
 
     let isDetail = $derived(router.location !== "/cuadernos");
