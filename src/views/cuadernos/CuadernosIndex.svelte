@@ -24,6 +24,7 @@
     import Semana10 from "./Semana10.svelte";
     import Semana11 from "./Semana11.svelte";
     import Semana12 from "./Semana12.svelte";
+    import Semana13 from "./Semana13.svelte";
 
     type CuadernoMeta = {
         slug: string;
@@ -143,6 +144,15 @@
             tags: ["django", "forms", "admin", "auth"],
             date: "2026-07",
             sheets: 11,
+        },
+        {
+            slug: "semana-13",
+            number: "13",
+            title: "Diseño de APIs RESTful",
+            topic: "DRF, serializadores, ViewSets, HATEOAS, JWT",
+            tags: ["django", "drf", "api", "rest"],
+            date: "2026-07",
+            sheets: 12,
         }
     ];
 
@@ -159,6 +169,7 @@
         "semana-10": Semana10,
         "semana-11": Semana11,
         "semana-12": Semana12,
+        "semana-13": Semana13,
     };
 
     let isDetail = $derived(router.location !== "/cuadernos");
