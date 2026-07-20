@@ -19,13 +19,15 @@
     import Semana5 from "./Semana5.svelte";
     import Semana6 from "./semana6.svelte";
     import Semana7 from "./Semana7.svelte";
-    import Semana8 from "./Semama8.svelte";
+    import Semana8 from "./Semana8.svelte";
     import Semana9 from "./Semana9.svelte";
     import Semana10 from "./Semana10.svelte";
     import Semana11 from "./Semana11.svelte";
     import Semana12 from "./Semana12.svelte";
     import Semana13 from "./Semana13.svelte";
     import Semana14 from "./Semana14.svelte";
+    import Semana15 from "./Semana15.svelte"
+    import Semana16 from "./Semana16.svelte"
 
     type CuadernoMeta = {
         slug: string;
@@ -199,6 +201,8 @@
         "semana-12": Semana12,
         "semana-13": Semana13,
         "semana-14": Semana14,
+        "semana-15": Semana15,
+        "semana-16": Semana16,
     };
 
     let isDetail = $derived(router.location !== "/cuadernos");
