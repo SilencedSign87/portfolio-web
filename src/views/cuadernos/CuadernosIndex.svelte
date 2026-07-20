@@ -163,6 +163,24 @@
             tags: ["django", "microservicios", "docker", "kubernetes"],
             date: "2026-07",
             sheets: 11,
+        },
+        {
+            slug: "semana-15",
+            number: "15",
+            title: "Proyecto final",
+            topic: "Desarrollo de un proyecto completo con Django y React",
+            tags: ["django", "react", "proyecto"],
+            date: "2026-08",
+            sheets: 12,
+        },
+        {
+            slug: "semana-16",
+            number: "16",
+            title: "Consolidado",
+            topic: "Notas finales y conclusiones del curso",
+            tags: ["consolidado", "notas"],
+            date: "2026-08",
+            sheets: 1,
         }
     ];
 
